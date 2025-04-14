@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AW Studio | Bespoke Web Solutions</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🫧</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6C4DF6;
+            --primary-light: #8D72F8;
+            --secondary: #FF7D59;
+            --accent: #00F0B5;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .lang-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 100px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.ibb.co/gL7xBN4r/Capture-d-cran-2025-04-14-174007.png') no-repeat center 30px/contain;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+            animation: float 6s ease-in-out infinite;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            color: var(--dark);
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: var(--accent);
+            margin: 15px auto;
+            border-radius: 5px;
+        }
+
+        .disclaimer {
+            background: rgba(255, 125, 89, 0.1);
+            border-left: 4px solid var(--secondary);
+            padding: 20px;
+            margin-bottom: 40px;
+            border-radius: 0 8px 8px 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .disclaimer h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+            transform: translateY(0);
+        }
+
+        .project:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project:hover img {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .project p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .project .btn {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+
+        .features {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .contact {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact h2::after {
+            background: var(--accent);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 77, 246, 0.2);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+        }
+
+        /* Particles */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .content-over-particles {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="ar">AR</button>
+    </div>
+
+    <header>
+        <div id="particles-js"></div>
+        <div class="container content-over-particles">
+            <img src="https://i.ibb.co/gL7xBN4r/Capture-d-cran-2025-04-14-174007.png" alt="AW Studio Logo" class="logo">
+            <h1 class="animate" data-i18n="header.title">Crafting Digital Excellence</h1>
+            <p class="tagline animate delay-1" data-i18n="header.tagline">We build bespoke websites that captivate and convert, tailored precisely to your vision</p>
+            <div class="animate delay-2">
+                <a href="#projects" class="btn" data-i18n="header.viewWork">View Our Work</a>
+                <a href="#contact" class="btn btn-secondary" data-i18n="header.getInTouch">Get in Touch</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="animate" data-i18n="projects.title">Project Showcase</h2>
+            
+            <div class="disclaimer animate delay-1">
+                <h3 data-i18n="projects.disclaimerTitle">Important Note</h3>
+                <p data-i18n="projects.disclaimerText">These are sample projects demonstrating our capabilities. Due to client confidentiality agreements, we cannot display actual client work here. Rest assured, every website we create is custom-tailored to each client's specific needs and brand identity.</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Interactive Resume -->
+                <div class="project animate delay-1">
+                    <img src="https://i.pinimg.com/474x/3b/9d/74/3b9d742c4be19f7a20f387a92a3b0779.jpg" alt="Interactive Resume">
+                    <div class="project-content">
+                        <h3 data-i18n="projects.project1.title">Interactive Resume</h3>
+                        <p data-i18n="projects.project1.desc">A playful, interactive resume featuring a cat and black hole game.</p>
+                        <a href="https://bronze-correna-57.tiiny.site" class="btn" target="_blank" data-i18n="projects.playGame">Play Game</a>
+                    </div>
+                </div>
+                
+                <!-- Matcha's Favorite Flower -->
+                <div class="project animate delay-2">
+                    <img src="https://i.pinimg.com/474x/5f/3f/d5/5f3fd503ff61f0b9171b20a2ea90091c.jpg" alt="Matcha's Favorite Flower">
+                    <div class="project-content">
+                        <h3 data-i18n="projects.project2.title">Matcha's Favorite Flower</h3>
+                        <p data-i18n="projects.project2.desc">A fun game where users guess Matcha's favorite flower.</p>
+                        <a href="https://teal-trudy-90.tiiny.site" class="btn" target="_blank" data-i18n="projects.playGame">Play Game</a>
+                    </div>
+                </div>
+                
+                <!-- Memory Card Game -->
+                <div class="project animate delay-3">
+                    <img src="https://i.pinimg.com/474x/55/92/d5/5592d54e926d5bb1252aae8657ed6805.jpg" alt="Memory Card Game">
+                    <div class="project-content">
+                        <h3 data-i18n="projects.project3.title">Memory Card Game</h3>
+                        <p data-i18n="projects.project3.desc">Test your memory by matching pairs of cards.</p>
+                        <a href="https://azure-donia-2.tiiny.site" class="btn" target="_blank" data-i18n="projects.playGame">Play Game</a>
+                    </div>
+                </div>
+                
+                <!-- Café Website -->
+                <div class="project animate delay-1">
+                    <img src="https://i.pinimg.com/474x/6c/1e/35/6c1e35d59732b51edb484f5810651023.jpg" alt="Café Website">
+                    <div class="project-content">
+                        <h3 data-i18n="projects.project4.title">Café Website</h3>
+                        <p data-i18n="projects.project4.desc">A professional website for a café.</p>
+                        <a href="https://coffee-laure-64.tiiny.site" class="btn" target="_blank" data-i18n="projects.visitWebsite">Visit Website</a>
+                    </div>
+                </div>
+                
+                <!-- German learning Website -->
+                <div class="project animate delay-2">
+                    <img src="https://i.pinimg.com/474x/d8/c1/d7/d8c1d754b17284edfeb660fee72ee238.jpg" alt="German learning Website">
+                    <div class="project-content">
+                        <h3 data-i18n="projects.project5.title">German learning Website</h3>
+                        <p data-i18n="projects.project5.desc">Learn 10K german words in 10 days!</p>
+                        <a href="https://nanalolhehe.github.io/German_words/" class="btn" target="_blank" data-i18n="projects.startLearning">Start learning</a>
+                    </div>
+                </div>
+                
+                <!-- Color Guessing Game -->
+                <div class="project animate delay-3">
+                    <img src="https://i.pinimg.com/474x/69/e8/c1/69e8c12c79bb9f81845615c08271b793.jpg" alt="Color Guessing Game">
+                    <div class="project-content">
+                        <h3 data-i18n="projects.project6.title">Color Guessing Game</h3>
+                        <p data-i18n="projects.project6.desc">Guess the correct color based on RGB values.</p>
+                        <a href="https://emerald-katina-70.tiiny.site" class="btn" target="_blank" data-i18n="projects.playGame">Play Game</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="animate" data-i18n="features.title">Why Choose AW Studio?</h2>
+            <div class="features-grid">
+                <div class="feature animate delay-1">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3 data-i18n="features.feature1.title">Bespoke Designs</h3>
+                    <p data-i18n="features.feature1.desc">Every pixel crafted to reflect your unique brand identity and vision.</p>
+                </div>
+                <div class="feature animate delay-2">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3 data-i18n="features.feature2.title">Fully Responsive</h3>
+                    <p data-i18n="features.feature2.desc">Flawless experience across all devices, from desktop to mobile.</p>
+                </div>
+                <div class="feature animate delay-3">
+                    <i class="fas fa-bolt"></i>
+                    <h3 data-i18n="features.feature3.title">Blazing Fast</h3>
+                    <p data-i18n="features.feature3.desc">Optimized performance that keeps visitors engaged and improves SEO.</p>
+                </div>
+                <div class="feature animate delay-4">
+                    <i class="fas fa-headset"></i>
+                    <h3 data-i18n="features.feature4.title">Ongoing Support</h3>
+                    <p data-i18n="features.feature4.desc">We're with you every step of the way, even after launch.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="animate" data-i18n="contact.title">Ready to Elevate Your Online Presence?</h2>
+            <p class="tagline animate delay-1" data-i18n="contact.subtitle">Let's discuss how we can bring your vision to life.</p>
+            
+            <div class="contact-form animate delay-2">
+                <form id="contactForm" action="https://formspree.io/f/mldjvekr" method="POST">
+                    <div class="form-group">
+                        <label for="name" data-i18n="contact.form.name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-i18n="contact.form.email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-i18n="contact.form.message">Project Details</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn" data-i18n="contact.form.submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <img src="https://i.ibb.co/gL7xBN4r/Capture-d-cran-2025-04-14-174007.png" alt="AW Studio Logo" class="logo" style="width: 100px; height: 100px;">
+            <div class="social-links">
+                <a href="link here" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <p data-i18n="footer.copyright">&copy; 2025 AW Studio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Particles.js initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#ffffff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#ffffff",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+        });
+
+        // Language switcher functionality
+        const translations = {
+            en: {
+                "header.title": "Crafting Digital Excellence",
+                "header.tagline": "We build bespoke websites that captivate and convert, tailored precisely to your vision",
+                "header.viewWork": "View Our Work",
+                "header.getInTouch": "Get in Touch",
+                "projects.title": "Project Showcase",
+                "projects.disclaimerTitle": "Important Note",
+                "projects.disclaimerText": "These are sample projects demonstrating our capabilities. Due to client confidentiality agreements, we cannot display actual client work here. Rest assured, every website we create is custom-tailored to each client's specific needs and brand identity.",
+                "projects.project1.title": "Interactive Resume",
+                "projects.project1.desc": "A playful, interactive resume featuring a cat and black hole game.",
+                "projects.project2.title": "Matcha's Favorite Flower",
+                "projects.project2.desc": "A fun game where users guess Matcha's favorite flower.",
+                "projects.project3.title": "Memory Card Game",
+                "projects.project3.desc": "Test your memory by matching pairs of cards.",
+                "projects.project4.title": "Café Website",
+                "projects.project4.desc": "A professional website for a café.",
+                "projects.project5.title": "German learning Website",
+                "projects.project5.desc": "Learn 10K german words in 10 days!",
+                "projects.project6.title": "Color Guessing Game",
+                "projects.project6.desc": "Guess the correct color based on RGB values.",
+                "projects.playGame": "Play Game",
+                "projects.visitWebsite": "Visit Website",
+                "projects.startLearning": "Start learning",
+                "features.title": "Why Choose AW Studio?",
+                "features.feature1.title": "Bespoke Designs",
+                "features.feature1.desc": "Every pixel crafted to reflect your unique brand identity and vision.",
+                "features.feature2.title": "Fully Responsive",
+                "features.feature2.desc": "Flawless experience across all devices, from desktop to mobile.",
+                "features.feature3.title": "Blazing Fast",
+                "features.feature3.desc": "Optimized performance that keeps visitors engaged and improves SEO.",
+                "features.feature4.title": "Ongoing Support",
+                "features.feature4.desc": "We're with you every step of the way, even after launch.",
+                "contact.title": "Ready to Elevate Your Online Presence?",
+                "contact.subtitle": "Let's discuss how we can bring your vision to life.",
+                "contact.form.name": "Your Name",
+                "contact.form.email": "Email Address",
+                "contact.form.message": "Project Details",
+                "contact.form.submit": "Send Message",
+                "footer.copyright": "© 2025 AW Studio. All rights reserved."
+            },
+            fr: {
+                "header.title": "Création d'Excellence Numérique",
+                "header.tagline": "Nous créons des sites web sur mesure qui captivent et convertissent, parfaitement adaptés à votre vision",
+                "header.viewWork": "Voir Nos Réalisations",
+                "header.getInTouch": "Contactez-Nous",
+                "projects.title": "Galerie de Projets",
+                "projects.disclaimerTitle": "Note Importante",
+                "projects.disclaimerText": "Ces projets sont des exemples démontrant nos capacités. En raison des accords de confidentialité avec nos clients, nous ne pouvons pas afficher ici nos réalisations pour eux. Soyez assuré que chaque site web que nous créons est entièrement personnalisé selon les besoins spécifiques et l'identité de marque de chaque client.",
+                "projects.project1.title": "CV Interactif",
+                "projects.project1.desc": "Un CV ludique et interactif avec un jeu de chat et trou noir.",
+                "projects.project2.title": "Fleur Préférée de Matcha",
+                "projects.project2.desc": "Un jeu amusant où les utilisateurs devinent la fleur préférée de Matcha.",
+                "projects.project3.title": "Jeu de Mémoire",
+                "projects.project3.desc": "Testez votre mémoire en associant des paires de cartes.",
+                "projects.project4.title": "Site Web de Café",
+                "projects.project4.desc": "Un site web professionnel pour un café.",
+                "projects.project5.title": "Site d'Apprentissage d'Allemand",
+                "projects.project5.desc": "Apprenez 10K mots allemands en 10 jours !",
+                "projects.project6.title": "Jeu de Devinette de Couleurs",
+                "projects.project6.desc": "Devinez la bonne couleur basée sur les valeurs RGB.",
+                "projects.playGame": "Jouer",
+                "projects.visitWebsite": "Visiter le Site",
+                "projects.startLearning": "Commencer à Apprendre",
+                "features.title": "Pourquoi Choisir AW Studio?",
+                "features.feature1.title": "Designs Sur Mesure",
+                "features.feature1.desc": "Chaque pixel est conçu pour refléter votre identité de marque unique et votre vision.",
+                "features.feature2.title": "Totalement Responsive",
+                "features.feature2.desc": "Expérience impeccable sur tous les appareils, du desktop au mobile.",
+                "features.feature3.title": "Ultra Rapide",
+                "features.feature3.desc": "Performance optimisée qui maintient l'engagement des visiteurs et améliore le SEO.",
+                "features.feature4.title": "Support Continu",
+                "features.feature4.desc": "Nous vous accompagnons à chaque étape, même après le lancement.",
+                "contact.title": "Prêt à Élever Votre Présence en Ligne?",
+                "contact.subtitle": "Discutons de la manière dont nous pouvons concrétiser votre vision.",
+                "contact.form.name": "Votre Nom",
+                "contact.form.email": "Adresse Email",
+                "contact.form.message": "Détails du Projet",
+                "contact.form.submit": "Envoyer le Message",
+                "footer.copyright": "© 2025 AW Studio. Tous droits réservés."
+            },
+            ar: {
+                "header.title": "صناعة التميز الرقمي",
+                "header.tagline": "نحن نبني مواقع ويب مخصصة تجذب وتحول ، مصممة بدقة وفقًا لرؤيتك",
+                "header.viewWork": "عرض أعمالنا",
+                "header.getInTouch": "تواصل معنا",
+                "projects.title": "عرض المشاريع",
+                "projects.disclaimerTitle": "ملاحظة مهمة",
+                "projects.disclaimerText": "هذه مشاريع نموذجية توضح قدراتنا. بسبب اتفاقيات السرية مع العملاء ، لا يمكننا عرض أعمالنا الفعلية للعملاء هنا. كن مطمئنًا أن كل موقع ويب ننشئه مصمم خصيصًا وفقًا للاحتياجات المحددة وهوية العلامة التجارية لكل عميل.",
+                "projects.project1.title": "سيرة ذاتية تفاعلية",
+                "projects.project1.desc": "سيرة ذاتية لعوب وتفاعلية تتميز بلعبة قط وثقب أسود.",
+                "projects.project2.title": "الزهرة المفضلة لماتشا",
+                "projects.project2.desc": "لعبة ممتعة حيث يحاول المستخدمون تخمين الزهرة المفضلة لماتشا.",
+                "projects.project3.title": "لعبة بطاقات الذاكرة",
+                "projects.project3.desc": "اختبر ذاكرتك بمطابقة أزواج من البطاقات.",
+                "projects.project4.title": "موقع مقهى",
+                "projects.project4.desc": "موقع احترافي لمقهى.",
+                "projects.project5.title": "موقع تعلم الألمانية",
+                "projects.project5.desc": "تعلم 10 آلاف كلمة ألمانية في 10 أيام!",
+                "projects.project6.title": "لعبة تخمين الألوان",
+                "projects.project6.desc": "خمن اللون الصحيح بناءً على قيم RGB.",
+                "projects.playGame": "العب اللعبة",
+                "projects.visitWebsite": "زيارة الموقع",
+                "projects.startLearning": "ابدأ التعلم",
+                "features.title": "لماذا تختار AW Studio؟",
+                "features.feature1.title": "تصاميم مخصصة",
+                "features.feature1.desc": "كل بكسل مصمم ليعكس هوية علامتك التجارية الفريدة ورؤيتك.",
+                "features.feature2.title": "متجاوب بالكامل",
+                "features.feature2.desc": "تجربة لا تشوبها شائبة عبر جميع الأجهزة ، من سطح المكتب إلى الهاتف المحمول.",
+                "features.feature3.title": "سريع للغاية",
+                "features.feature3.desc": "أداء محسن يحافظ على تفاعل الزوار ويحسن SEO.",
+                "features.feature4.title": "دعم مستمر",
+                "features.feature4.desc": "نحن معك في كل خطوة ، حتى بعد الإطلاق.",
+                "contact.title": "هل أنت مستعد لرفع مستوى وجودك على الإنترنت؟",
+                "contact.subtitle": "دعونا نناقش كيف يمكننا تحقيق رؤيتك.",
+                "contact.form.name": "اسمك",
+                "contact.form.email": "عنوان البريد الإلكتروني",
+                "contact.form.message": "تفاصيل المشروع",
+                "contact.form.submit": "إرسال الرسالة",
+                "footer.copyright": "© 2025 AW Studio. جميع الحقوق محفوظة."
+            }
+        };
+
+        document.querySelectorAll('.lang-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get selected language
+                const lang = this.getAttribute('data-lang');
+                
+                // Update dir attribute for Arabic
+                if (lang === 'ar') {
+                    document.documentElement.dir = 'rtl';
+                } else {
+                    document.documentElement.dir = 'ltr';
+                }
+                
+                // Update all translatable elements
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (translations[lang] && translations[lang][key]) {
+                        element.textContent = translations[lang][key];
+                    }
+                });
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                alert(document.querySelector('[data-lang].active').textContent === 'AR' ? 
+                      'شكرًا لتواصلك معنا! سنعود إليك قريبًا.' : 
+                      'Thank you for reaching out! We\'ll get back to you soon.');
+                form.reset();
+            }).catch(error => {
+                alert('Error: Please try again later');
+            });
+        });
+
+        // Scroll animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
