@@ -1,32 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AW Studio | Premium Web Development</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+    <title>AW Studio | Bespoke Web Solutions</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🫧</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/dist/vanta.net.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #7b2cbf;
-            --primary-dark: #5a189a;
-            --primary-light: #9d4edd;
-            --dark: #212529;
-            --light: #f8f9fa;
-            --gray: #6c757d;
-            --dark-bg: #10002b;
-            --light-bg: #f3e9ff; 
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
-            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
-            --shadow-xl: 0 20px 50px rgba(0,0,0,0.2);
+            --primary: #6C4DF6;
+            --primary-light: #8D72F8;
+            --secondary: #FF7D59;
+            --accent: #00F0B5;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.2);
         }
 
         * {
@@ -36,2921 +28,928 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--light-bg);
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
             color: var(--dark);
             overflow-x: hidden;
             line-height: 1.6;
-            transition: background-color 0.5s ease;
         }
 
-        body.dark-mode {
-            background-color: var(--dark-bg);
-            color: var(--light);
+        [dir="rtl"] {
+            text-align: right;
         }
 
-        /* Header Styles */
-        header {
+        .language-switcher {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+            top: 20px;
+            right: 20px;
             z-index: 1000;
-            padding: 1.5rem 5%;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: rgba(212, 163, 255, 0.95);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.5s ease;
-            backdrop-filter: blur(10px);
+            gap: 10px;
         }
 
-        body.dark-mode header {
-            background-color: rgba(16, 0, 43, 0.95);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        [dir="rtl"] .language-switcher {
+            right: auto;
+            left: 20px;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .lang-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 100px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 100px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: rgb(154, 5, 247);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+            animation: float 6s ease-in-out infinite;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
         }
 
-        .logo span {
-            color: white;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
-        .logo-icon {
-            width: 30px;
-            height: 30px;
-            background-color: white;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: rgb(149, 62, 255);
-            font-weight: 500;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: white;
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: white;
-            transition: transform 0.5s ease;
-        }
-
-        .theme-toggle:hover {
-            transform: rotate(30deg);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: white;
-            cursor: pointer;
-        }
-
-        /* Language Selector */
-        .language-selector {
-            position: relative;
-            margin-left: 1rem;
-        }
-
-        .language-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .language-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background-color: white;
-            border-radius: 6px;
-            box-shadow: var(--shadow-md);
-            padding: 0.5rem 0;
-            min-width: 120px;
-            display: none;
-            z-index: 1001;
-        }
-
-        body.dark-mode .language-dropdown {
-            background-color: #1e293b;
-        }
-
-        .language-dropdown a {
-            display: block;
-            padding: 0.5rem 1rem;
-            color: var(--dark);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        body.dark-mode .language-dropdown a {
-            color: var(--light);
-        }
-
-        .language-dropdown a:hover {
-            background-color: rgba(123, 44, 191, 0.1);
-        }
-
-        body.dark-mode .language-dropdown a:hover {
-            background-color: rgba(157, 78, 221, 0.2);
-        }
-
-        .language-selector:hover .language-dropdown {
-            display: block;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            position: relative;
-            overflow: hidden;
-            padding-top: 80px;
-        }
-
-        .hero-content {
-            max-width: 600px;
-            z-index: 2;
-        }
-
-        .hero h1 {
+        h1 {
+            font-family: 'Montserrat', sans-serif;
             font-size: 3.5rem;
-            font-weight: 700;
+            margin-bottom: 20px;
             line-height: 1.2;
-            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        body.dark-mode .hero  {
-            color: #5a00a9;
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
+        .btn {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            margin: 10px;
         }
 
-body.dark-mode .hero p {
-    color: #8d01ffb6;
-}
-
-/* Primary button styles */
-.btn {
-    display: inline-block;
-    padding: 0.8rem 2rem;
-    background-color: var(--primary); /* Purple background */
-    color: white !important;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    z-index: 10; /* Ensure button stays above other elements */
-} 
-
-/* Button hover effect overlay */
-.btn::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-}
-
-.btn:hover::after {
-    transform: translateX(100%);
-}
-
-/* Button hover state */
-.btn:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-}
-
-/* Dark mode button adjustments */
-body.dark-mode .btn {
-    background-color: var(--primary-light);
-}
-
-/* Outline button styles */
-.btn-outline {
-    background-color: transparent;
-    border: 2px solid var(--primary);
-    color: var(--primary) !important;
-    margin-left: 1rem;
-    z-index: 10; 
-}
-
-
-body.dark-mode .btn-outline {
-    color: var(--light) !important;
-    border-color: var(--light);
-}
-
-
-.btn-outline:hover {
-    background-color: var(--primary);
-    color: white !important; 
-}
-
-
-body.dark-mode .btn-outline:hover {
-    border-color: var(--primary);
-    background-color: var(--primary);
-}
-
-/* 1. Force button group to appear above everything */
-.btn-group {
-    position: relative;
-    z-index: 1000 !important;
-    transform-style: preserve-3d; /* Prevents weird z-index bugs */
-}
-
-/* 2. Nuclear button reset */
-.btn, .btn-outline {
-    all: unset !important;
-    display: inline-block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    padding: 0.8rem 2rem !important;
-    margin-left: 1rem !important;
-    position: relative !important;
-    z-index: 1001 !important;
-    transform: none !important;
-    background: rgba(102, 0, 255, 0) !important;
-    color: rgba(124, 5, 228, 0.466) !important;
-    border: 2px solid rgba(129, 3, 239, 0.221) !important;
-}
-
-/* 3. Contain the particle effect */
-#particles-js {
-    z-index: 1 !important;
-    pointer-events: none !important; /* Allows clicks through to buttons */
-}
-
-/* 4. Fix hero section stacking */
-.hero {
-    position: relative;
-    z-index: 0;
-}
-.hero-content {
-    position: relative;
-    z-index: 10;
-}
-
-        .hero-image {
-            position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40%;
-            max-width: 600px;
-            cursor: pointer;
-            transition: all 0.5s ease;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow-xl);
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            background: var(--accent);
+            color: var(--dark);
         }
 
-        [dir="rtl"] .hero-image {
-            right: auto;
-            left: 5%;
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
         }
 
-        .hero-image img {
-            width: 100%;
-            height: auto;
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            color: var(--dark);
+        }
+
+        h2::after {
+            content: '';
             display: block;
-            transition: transform 0.5s ease;
+            width: 80px;
+            height: 5px;
+            background: var(--accent);
+            margin: 15px auto;
+            border-radius: 5px;
         }
 
-        /* 3D Particle Background */
+        .disclaimer {
+            background: rgba(255, 125, 89, 0.1);
+            border-left: 4px solid var(--secondary);
+            padding: 20px;
+            margin-bottom: 40px;
+            border-radius: 0 8px 8px 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        [dir="rtl"] .disclaimer {
+            border-left: none;
+            border-right: 4px solid var(--secondary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+            transform: translateY(0);
+        }
+
+        .project:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project:hover img {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .project p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .project .btn {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+
+        .features {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .contact {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact h2::after {
+            background: var(--accent);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        [dir="rtl"] .form-group {
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 77, 246, 0.2);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+
+            [dir="rtl"] .language-switcher {
+                right: auto;
+                left: 10px;
+            }
+        }
+
+        /* Particles */
         #particles-js {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
+            z-index: 0;
+        }
+
+        .content-over-particles {
+            position: relative;
             z-index: 1;
-        }
-
-        /* Mouse Trail */
-        .mouse-trail {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background-color: var(--primary-light);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: screen;
-            opacity: 0.7;
-        }
-
-        .trail-dot {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background-color: var(--primary);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: screen;
-        }
-
-        /* Code Preview */
-        .code-preview {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            background: rgba(30, 41, 59, 0.9);
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            z-index: 1000;
-            overflow: hidden;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        body.dark-mode .code-preview {
-            background: rgba(248, 249, 250, 0.9);
-        }
-
-        .code-preview.active {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .code-header {
-            padding: 10px 15px;
-            background: rgba(0,0,0,0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        body.dark-mode .code-header {
-            background: rgba(0,0,0,0.1);
-        }
-
-        .code-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: white;
-        }
-
-        body.dark-mode .code-title {
-            color: var(--dark);
-        }
-
-        .code-close {
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        body.dark-mode .code-close {
-            color: var(--dark);
-        }
-
-        .code-content {
-            padding: 15px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.8rem;
-            color: #f8f8f2;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-
-        body.dark-mode .code-content {
-            color: #333;
-        }
-
-        .code-content pre {
-            margin: 0;
-        }
-
-        .token.comment,
-        .token.prolog,
-        .token.doctype,
-        .token.cdata {
-            color: #8292a2;
-        }
-
-        .token.punctuation {
-            color: #f8f8f2;
-        }
-
-        body.dark-mode .token.punctuation {
-            color: #333;
-        }
-
-        .token.property,
-        .token.tag,
-        .token.constant,
-        .token.symbol,
-        .token.deleted {
-            color: #f92672;
-        }
-
-        .token.boolean,
-        .token.number {
-            color: #ae81ff;
-        }
-
-        .token.selector,
-        .token.attr-name,
-        .token.string,
-        .token.char,
-        .token.builtin,
-        .token.inserted {
-            color: #a6e22e;
-        }
-
-        .token.operator,
-        .token.entity,
-        .token.url,
-        .language-css .token.string,
-        .style .token.string,
-        .token.variable {
-            color: #f8f8f2;
-        }
-
-        body.dark-mode .token.operator,
-        body.dark-mode .token.entity,
-        body.dark-mode .token.url,
-        body.dark-mode .language-css .token.string,
-        body.dark-mode .style .token.string,
-        body.dark-mode .token.variable {
-            color: #333;
-        }
-
-        .token.atrule,
-        .token.attr-value,
-        .token.function,
-        .token.class-name {
-            color: #e6db74;
-        }
-
-        .token.keyword {
-            color: #66d9ef;
-        }
-
-        .token.regex,
-        .token.important {
-            color: #fd971f;
-        }
-
-        .token.important,
-        .token.bold {
-            font-weight: bold;
-        }
-
-        .token.italic {
-            font-style: italic;
-        }
-
-        .token.entity {
-            cursor: help;
-        }
-
-        /* AI Chatbot */
-        .chatbot-container {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-        }
-
-        .chatbot-container:hover {
-            transform: scale(1.1);
-        }
-
-        .chatbot-icon {
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .chatbot-window {
-            position: fixed;
-            bottom: 90px;
-            left: 20px;
-            width: 350px;
-            max-height: 500px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            z-index: 1001;
-            transform: scale(0);
-            transform-origin: bottom left;
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        body.dark-mode .chatbot-window {
-            background-color: #1e293b;
-        }
-
-        .chatbot-window.active {
-            transform: scale(1);
-        }
-
-        .chatbot-header {
-            padding: 15px;
-            background-color: var(--primary);
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chatbot-title {
-            font-weight: 600;
-        }
-
-        .chatbot-close {
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .chatbot-messages {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .message {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 18px;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
-        .bot-message {
-            align-self: flex-start;
-            background-color: #f1f1f1;
-            color: #333;
-            border-bottom-left-radius: 5px;
-        }
-
-        body.dark-mode .bot-message {
-            background-color: #334155;
-            color: white;
-        }
-
-        .user-message {
-            align-self: flex-end;
-            background-color: var(--primary);
-            color: white;
-            border-bottom-right-radius: 5px;
-        }
-
-        .chatbot-input-container {
-            padding: 10px;
-            border-top: 1px solid #e2e8f0;
-            display: flex;
-        }
-
-        body.dark-mode .chatbot-input-container {
-            border-top-color: #334155;
-        }
-
-        .chatbot-input {
-            flex: 1;
-            padding: 10px 15px;
-            border: 1px solid #e2e8f0;
-            border-radius: 20px;
-            outline: none;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body.dark-mode .chatbot-input {
-            background-color: #334155;
-            border-color: #475569;
-            color: white;
-        }
-
-        .chatbot-send {
-            margin-left: 10px;
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Audio Visualizer */
-        .audio-visualizer {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .audio-icon {
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .visualizer-bars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2px;
-            transform: scale(0);
-            transition: transform 0.3s ease;
-        }
-
-        .visualizer-bars.active {
-            transform: scale(1);
-        }
-
-        .bar {
-            width: 3px;
-            height: 10px;
-            background-color: white;
-            border-radius: 3px;
-            transform-origin: bottom;
-            animation: none;
-        }
-
-        @keyframes bar-animation {
-            0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(2); }
-        }
-
-        /* Shader Effects */
-        .shader-effect {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.1;
-            mix-blend-mode: screen;
-        }
-
-        /* Typing Animation */
-        .typed-cursor {
-            opacity: 1;
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        /* Services Section */
-        .section {
-            padding: 8rem 5%;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background-color: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: var(--shadow-lg);
-            transition: all 0.5s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        body.dark-mode .service-card {
-            background-color: #1e293b;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(123, 44, 191, 0.1), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .service-card:hover::before {
-            transform: translateX(100%);
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background-color: var(--primary-light);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-        }
-
-        body.dark-mode .service-card p {
-            color: #94a3b8;
-        }
-
-        .service-link {
-            display: inline-flex;
-            align-items: center;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .service-link i {
-            margin-left: 0.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .service-link:hover i {
-            transform: translateX(5px);
-        }
-
-        /* Portfolio Section */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .portfolio-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            height: 300px;
-            cursor: pointer;
-        }
-
-        .portfolio-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 2rem;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.5s ease;
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .portfolio-item:hover .portfolio-img {
-            transform: scale(1.1);
-        }
-
-        .portfolio-overlay h3 {
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .portfolio-overlay p {
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 1rem;
-        }
-
-        .portfolio-link {
-            display: inline-flex;
-            align-items: center;
-            color: rgb(0, 133, 97);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .portfolio-link i {
-            margin-left: 0.5rem;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-image {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow-xl);
-            cursor: pointer;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        body.dark-mode .about-text p {
-            color: #94a3b8;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1.5rem;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        body.dark-mode .stat-item {
-            background-color: #1e293b;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* Contact Section */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-info h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info p {
-            color: var(--gray);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        body.dark-mode .contact-info p {
-            color: #94a3b8;
-        }
-
-        .contact-details {
-            margin-top: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .contact-item:hover {
-            background-color: rgba(123, 44, 191, 0.1);
-        }
-
-        body.dark-mode .contact-item:hover {
-            background-color: rgba(157, 78, 221, 0.2);
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary-light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            margin-right: 1rem;
-        }
-
-        .contact-text h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .contact-text p {
-            margin-bottom: 0;
-            color: var(--gray);
-        }
-
-        .contact-form {
-            background-color: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: var(--shadow-lg);
-        }
-
-        body.dark-mode .contact-form {
-            background-color: #1e293b;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        body.dark-mode .form-control {
-            background-color: #334155;
-            border-color: #475569;
-            color: white;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(123, 44, 191, 0.2);
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 0.8rem;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background-color: var(--primary-dark);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 4rem 5%;
-        }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-logo-icon {
-            width: 30px;
-            height: 30px;
-            background-color: white;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        .footer-about p {
-            color: #adb5bd;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background-color: #343a40;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        body.dark-mode .social-link {
-            background-color: #1e293b;
-        }
-
-        .social-link:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .footer-links h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-links h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--primary);
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .footer-links a:hover {
-            color: white;
-            padding-left: 5px;
-        }
-
-        .footer-newsletter p {
-            color: #adb5bd;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .newsletter-form {
-            display: flex;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            padding: 0.8rem;
-            border: none;
-            border-radius: 6px 0 0 6px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body.dark-mode .newsletter-input {
-            background-color: #334155;
-            color: white;
-        }
-
-        .newsletter-btn {
-            padding: 0 1.5rem;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 0 6px 6px 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .newsletter-btn:hover {
-            background-color: var(--primary-dark);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #343a40;
-            padding-top: 2rem;
-            text-align: center;
-            color: #adb5bd;
-            font-size: 0.9rem;
-        }
-
-        body.dark-mode .footer-bottom {
-            border-top-color: #1e293b;
-        }
-
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        /* WASM Demo */
-        .wasm-demo {
-            position: fixed;
-            bottom: 20px;
-            right: 340px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .wasm-icon {
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .wasm-window {
-            position: fixed;
-            bottom: 80px;
-            right: 340px;
-            width: 300px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            z-index: 1001;
-            transform: scale(0);
-            transform-origin: bottom right;
-            transition: transform 0.3s ease;
-            padding: 20px;
-        }
-
-        body.dark-mode .wasm-window {
-            background-color: #1e293b;
-        }
-
-        .wasm-window.active {
-            transform: scale(1);
-        }
-
-        .wasm-title {
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-
-        body.dark-mode .wasm-title {
-            color: white;
-        }
-
-        .wasm-input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body.dark-mode .wasm-input {
-            background-color: #334155;
-            border-color: #475569;
-            color: white;
-        }
-
-        .wasm-result {
-            padding: 10px;
-            background-color: #f1f1f1;
-            border-radius: 6px;
-            font-family: monospace;
-            margin-top: 15px;
-        }
-
-        body.dark-mode .wasm-result {
-            background-color: #334155;
-            color: white;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .about-content,
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .hero-image {
-                position: relative;
-                right: auto;
-                left: auto !important;
-                top: auto;
-                transform: none;
-                width: 100%;
-                max-width: 100%;
-                margin-top: 3rem;
-            }
-
-            .wasm-demo, .wasm-window {
-                right: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 1rem 5%;
-            }
-            
-            nav {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                padding: 1rem 5%;
-                box-shadow: var(--shadow-md);
-                transform: translateY(-150%);
-                transition: transform 0.5s ease;
-                z-index: 999;
-            }
-            
-            body.dark-mode nav {
-                background-color: #1e293b;
-            }
-            
-            nav.active {
-                transform: translateY(0);
-            }
-            
-            nav ul {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .btn {
-                padding: 0.7rem 1.5rem;
-                font-size: 0.9rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-                margin-bottom: 3rem;
-            }
-
-            .language-selector {
-                margin-left: 0.5rem;
-            }
-
-            .chatbot-window {
-                width: 300px;
-                max-height: 400px;
-            }
-
-            .code-preview {
-                width: 250px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .btn-group {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .btn-outline {
-                margin-left: 0;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-
-            .chatbot-window {
-                width: 280px;
-                left: 10px;
-            }
-
-            .wasm-window {
-                width: 280px;
-                right: 10px;
-            }
         }
     </style>
 </head>
-<body class="dark-mode">
-    <!-- Header -->
+<body>
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="ar">AR</button>
+    </div>
+
     <header>
-        <a href="#" class="logo">
-            <div class="logo-icon">AW</div>
-            <span>Studio</span>
-        </a>
-        
-        <nav>
-            <ul>
-                <li><a href="#home" data-i18n="nav.home">Home</a></li>
-                <li><a href="#services" data-i18n="nav.services">Services</a></li>
-                <li><a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a></li>
-                <li><a href="#about" data-i18n="nav.about">About</a></li>
-                <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
-            </ul>
-        </nav>
-        
-        <div class="language-selector">
-            <button class="language-btn" id="languageBtn">
-                <i class="fas fa-globe"></i>
-                <span data-i18n="language.english">English</span>
-            </button>
-            <div class="language-dropdown">
-                <a href="#" data-lang="en" data-i18n="language.english">English</a>
-                <a href="#" data-lang="fr" data-i18n="language.french">Français</a>
-                <a href="#" data-lang="ar" data-i18n="language.arabic">العربية</a>
+        <div id="particles-js"></div>
+        <div class="container content-over-particles">
+            <img src="https://i.ibb.co/gL7xBN4r/Capture-d-cran-2025-04-14-174007.png" alt="AW Studio Logo" class="logo">
+            <h1 class="animate" data-i18n="header.title">Crafting Digital Excellence</h1>
+            <p class="tagline animate delay-1" data-i18n="header.tagline">We build bespoke websites that captivate and convert, tailored precisely to your vision</p>
+            <div class="animate delay-2">
+                <a href="#projects" class="btn" data-i18n="header.viewWork">View Our Work</a>
+                <a href="#contact" class="btn btn-secondary" data-i18n="header.getInTouch">Get in Touch</a>
             </div>
         </div>
-        
-        <button class="theme-toggle">
-            <i class="fas fa-sun"></i>
-        </button>
-        
-        <button class="mobile-menu-btn">
-            <i class="fas fa-bars"></i>
-        </button>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div id="particles-js"></div>
-        <div class="hero-content">
-            <h1 data-i18n="hero.title">Premium Web Solutions for Modern Businesses</h1>
-            <p data-i18n="hero.subtitle">We craft high-performance websites that drive results and elevate your digital presence to new heights.</p>
-            <div class="btn-group" style="background: rgba(255, 0, 0, 0); padding: 20px;">
-              <a href="https://www.instagram.com/aw.studio.dz/" class="btn" style="background: rgb(162, 0, 255); color: black !important;">GET STARTED</a>
-              <a href="https://aw-studio-dev.github.io/showcase/" class="btn btn-outline" style="background: rgb(166, 0, 255); color: black !important;">VIEW WORK</a>
-          </div>
-        </div>
-        
-        <div class="hero-image floating" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Web Development">
+    <section id="projects">
+        <div class="container">
+            <h2 class="animate" data-i18n="projects.title">Project Showcase</h2>
+            
+            <div class="disclaimer animate delay-1">
+                <h3 data-i18n="projects.disclaimerTitle">Important Note</h3>
+                <p data-i18n="projects.disclaimerText">These are sample projects demonstrating our capabilities. Due to client confidentiality agreements, we cannot display actual client work here. Rest assured, every website we create is custom-tailored to each client's specific needs and brand identity.</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Interactive Resume -->
+                <div class="project animate delay-1">
+                    <img src="https://i.pinimg.com/474x/3b/9d/74/3b9d742c4be19f7a20f387a92a3b0779.jpg" alt="Interactive Resume">
+                    <div class="project-content">
+                        <h3 data-i18n="projects.project1.title">Interactive Resume</h3>
+                        <p data-i18n="projects.project1.desc">A playful, interactive resume featuring a cat and black hole game.</p>
+                        <a href="https://bronze-correna-57.tiiny.site" class="btn" target="_blank" data-i18n="projects.playGame">Play Game</a>
+                    </div>
+                </div>
+                
+                <!-- Matcha's Favorite Flower -->
+                <div class="project animate delay-2">
+                    <img src="https://i.pinimg.com/474x/5f/3f/d5/5f3fd503ff61f0b9171b20a2ea90091c.jpg" alt="Matcha's Favorite Flower">
+                    <div class="project-content">
+                        <h3 data-i18n="projects.project2.title">Matcha's Favorite Flower</h3>
+                        <p data-i18n="projects.project2.desc">A fun game where users guess Matcha's favorite flower.</p>
+                        <a href="https://teal-trudy-90.tiiny.site" class="btn" target="_blank" data-i18n="projects.playGame">Play Game</a>
+                    </div>
+                </div>
+                
+                <!-- Memory Card Game -->
+                <div class="project animate delay-3">
+                    <img src="https://i.pinimg.com/474x/55/92/d5/5592d54e926d5bb1252aae8657ed6805.jpg" alt="Memory Card Game">
+                    <div class="project-content">
+                        <h3 data-i18n="projects.project3.title">Memory Card Game</h3>
+                        <p data-i18n="projects.project3.desc">Test your memory by matching pairs of cards.</p>
+                        <a href="https://azure-donia-2.tiiny.site" class="btn" target="_blank" data-i18n="projects.playGame">Play Game</a>
+                    </div>
+                </div>
+                
+                <!-- Café Website -->
+                <div class="project animate delay-1">
+                    <img src="https://i.pinimg.com/474x/6c/1e/35/6c1e35d59732b51edb484f5810651023.jpg" alt="Café Website">
+                    <div class="project-content">
+                        <h3 data-i18n="projects.project4.title">Café Website</h3>
+                        <p data-i18n="projects.project4.desc">A professional website for a café.</p>
+                        <a href="https://coffee-laure-64.tiiny.site" class="btn" target="_blank" data-i18n="projects.visitWebsite">Visit Website</a>
+                    </div>
+                </div>
+                
+                <!-- German learning Website -->
+                <div class="project animate delay-2">
+                    <img src="https://i.pinimg.com/474x/d8/c1/d7/d8c1d754b17284edfeb660fee72ee238.jpg" alt="German learning Website">
+                    <div class="project-content">
+                        <h3 data-i18n="projects.project5.title">German learning Website</h3>
+                        <p data-i18n="projects.project5.desc">Learn 10K german words in 10 days!</p>
+                        <a href="https://nanalolhehe.github.io/German_words/" class="btn" target="_blank" data-i18n="projects.startLearning">Start learning</a>
+                    </div>
+                </div>
+                
+                <!-- Color Guessing Game -->
+                <div class="project animate delay-3">
+                    <img src="https://i.pinimg.com/474x/69/e8/c1/69e8c12c79bb9f81845615c08271b793.jpg" alt="Color Guessing Game">
+                    <div class="project-content">
+                        <h3 data-i18n="projects.project6.title">Color Guessing Game</h3>
+                        <p data-i18n="projects.project6.desc">Guess the correct color based on RGB values.</p>
+                        <a href="https://emerald-katina-70.tiiny.site" class="btn" target="_blank" data-i18n="projects.playGame">Play Game</a>
+                    </div>
+                </div>
+
+                <!-- resto website -->
+             <div class="project animate delay-1">
+                    <img src="https://i.pinimg.com/736x/cf/63/e0/cf63e0dbea9a0cca5cdb09c2055ebdac.jpg" alt="Restaurant Website">
+                    <div class="project-content">
+                        <h3 data-i18n="projects.project7.title">Restaurant Website</h3>
+                        <p data-i18n="projects.project7.desc">A professional website for a restaurant</p>
+                        <a href="https://aw-studio-dev.github.io/MAMA-s-KITCHEN/" class="btn" target="_blank" data-i18n="projects.visitWebsite">Visit Website</a>
+                    </div>
+                </div>
+
+                <!-- Bank website -->
+            <div class="project animate delay-2">
+                    <img src="https://i.pinimg.com/736x/4e/b8/41/4eb8416702db763520d166e58111f223.jpg" alt="banks Website">
+                    <div class="project-content">
+                        <h3 data-i18n="projects.project8.title">Banks Website</h3>
+                        <p data-i18n="projects.project8.desc">Find your perfect bank.</p>
+                        <a href="https://aw-studio-dev.github.io/-/" class="btn" target="_blank" data-i18n="projects.visitWebsite">Visit Website</a>
+                    </div>
+                </div>
+                <!-- AW.studio website -->
+             <div class="project animate delay-3">
+                    <img src="https://scontent.fqsf1-2.fna.fbcdn.net/v/t39.30808-6/488921706_122144915852582268_3107300146203708214_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFFFULtXlo46wNZ1hH5N6yu2qq1nBXLDjraqrWcFcsOOv4GGS1JGt0zWwywNT7lnKDvw9jZG8dw04O479bwdZzS&_nc_ohc=okYrcktVKSAQ7kNvwEoR1qB&_nc_oc=AdmbQKoMmJarELnYwRO_pgNLLtcYql-stOPmZ8mWZD4l9QmsmVQ5EVFiizkY2mbBWjQ&_nc_zt=23&_nc_ht=scontent.fqsf1-2.fna&_nc_gid=XiIhemYmxabvzX_5vDQQjw&oh=00_AfHDextC9mIs32TdzbNNRicro-ug_eeZRevMZFqAIUv-Tg&oe=68129747" alt="AW.studio Website">
+                    <div class="project-content">
+                        <h3 data-i18n="projects.project9.title">AW.studio Website</h3>
+                        <p data-i18n="projects.project9.desc">Our company website.</p>
+                        <a href="https://aw-studio-dev.github.io/company/" class="btn" target="_blank" data-i18n="projects.visitWebsite">Visit Website</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="section" id="services">
-        <h2 class="section-title" data-i18n="services.title">Our Services</h2>
-        
-        <div class="services-grid">
-            <div class="service-card" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                <div class="service-icon">
-                    <i class="fas fa-code"></i>
-                </div>
-                <h3 data-i18n="services.service1.title">Custom Development</h3>
-                <p data-i18n="services.service1.description">Tailored web solutions built from scratch to meet your specific business requirements and goals.</p>
-                <a href="https://aw-studio-dev.github.io/showcase/" class="service-link" data-i18n="services.learn_more" target="_blank">Learn more <i class="fas fa-arrow-right"></i></a>
-            </div>
-            
-            <div class="service-card" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                <div class="service-icon">
+    <section class="features">
+        <div class="container">
+            <h2 class="animate" data-i18n="features.title">Why Choose AW Studio?</h2>
+            <div class="features-grid">
+                <div class="feature animate delay-1">
                     <i class="fas fa-paint-brush"></i>
+                    <h3 data-i18n="features.feature1.title">Bespoke Designs</h3>
+                    <p data-i18n="features.feature1.desc">Every pixel crafted to reflect your unique brand identity and vision.</p>
                 </div>
-                <h3 data-i18n="services.service2.title">UI/UX Design</h3>
-                <p data-i18n="services.service2.description">Beautiful, intuitive interfaces designed to enhance user experience and drive engagement.</p>
-                <a href="https://aw-studio-dev.github.io/showcase/" class="service-link" data-i18n="services.learn_more" target="_blank">Learn more <i class="fas fa-arrow-right"></i></a>
-            </div>
-            
-            <div class="service-card" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                <div class="service-icon">
+                <div class="feature animate delay-2">
                     <i class="fas fa-mobile-alt"></i>
+                    <h3 data-i18n="features.feature2.title">Fully Responsive</h3>
+                    <p data-i18n="features.feature2.desc">Flawless experience across all devices, from desktop to mobile.</p>
                 </div>
-                <h3 data-i18n="services.service3.title">Responsive Design</h3>
-                <p data-i18n="services.service3.description">Flawless performance across all devices, ensuring your website looks perfect on any screen.</p>
-                <a href="https://aw-studio-dev.github.io/showcase/" class="service-link" data-i18n="services.learn_more" target="_blank">Learn more <i class="fas fa-arrow-right"></i></a>
-            </div>
-            
-            <div class="service-card" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                <div class="service-icon">
-                    <i class="fas fa-search"></i>
+                <div class="feature animate delay-3">
+                    <i class="fas fa-bolt"></i>
+                    <h3 data-i18n="features.feature3.title">Blazing Fast</h3>
+                    <p data-i18n="features.feature3.desc">Optimized performance that keeps visitors engaged and improves SEO.</p>
                 </div>
-                <h3 data-i18n="services.service4.title">SEO Optimization</h3>
-                <p data-i18n="services.service4.description">Technical and content optimization to improve your search rankings and organic traffic.</p>
-                <a href="https://aw-studio-dev.github.io/showcase/" class="service-link" data-i18n="services.learn_more" target="_blank">Learn more <i class="fas fa-arrow-right"></i></a>
-            </div>
-            
-            <div class="service-card" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                <div class="service-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
-                <h3 data-i18n="services.service5.title">E-Commerce</h3>
-                <p data-i18n="services.service5.description">Powerful online stores with secure payment gateways and intuitive product management.</p>
-                <a href="https://aw-studio-dev.github.io/showcase/" class="service-link" data-i18n="services.learn_more" target="_blank">Learn more <i class="fas fa-arrow-right"></i></a>
-            </div>
-            
-            <div class="service-card" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                <div class="service-icon">
-                    <i class="fas fa-server"></i>
-                </div>
-                <h3 data-i18n="services.service6.title">Web Hosting</h3>
-                <p data-i18n="services.service6.description">Reliable, high-speed hosting with 99.9% uptime and expert technical support.</p>
-                <a href="https://aw-studio-dev.github.io/showcase/" class="service-link" data-i18n="services.learn_more" target="_blank">Learn more <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section class="section" id="portfolio">
-        <h2 class="section-title" data-i18n="portfolio.title">Our Portfolio</h2>
-        
-        <div class="portfolio-grid">
-            <div class="portfolio-item" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                <img src="https://i.pinimg.com/736x/ae/c2/4a/aec24ae439374de6d57d60b812f1064f.jpg" alt="Project 1" class="portfolio-img">
-                <div class="portfolio-overlay">
-                    <h3 data-i18n="portfolio.project1.title">E-Commerce Platform</h3>
-                    <p data-i18n="portfolio.project1.description">Complete online store with custom CMS and payment integration</p>
-                    <a href="https://aw-studio-dev.github.io/showcase/" class="portfolio-link" data-i18n="portfolio.view_project" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            
-            <div class="portfolio-item" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1536&q=80" alt="Project 2" class="portfolio-img">
-                <div class="portfolio-overlay">
-                    <h3 data-i18n="portfolio.project2.title">Corporate Website</h3>
-                    <p data-i18n="portfolio.project2.description">Modern corporate site with interactive elements</p>
-                    <a href="https://aw-studio-dev.github.io/showcase/" class="portfolio-link" data-i18n="portfolio.view_project" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            
-            <div class="portfolio-item" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 3" class="portfolio-img">
-                <div class="portfolio-overlay">
-                    <h3 data-i18n="portfolio.project3.title">Mobile App Dashboard</h3>
-                    <p data-i18n="portfolio.project3.description">Analytics dashboard for health tracking app</p>
-                    <a href="https://aw-studio-dev.github.io/showcase/" class="portfolio-link" data-i18n="portfolio.view_project" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            
-            <div class="portfolio-item" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                <img src="https://i.pinimg.com/736x/26/16/0b/26160bd4b1aa17c35eef872911b4e738.jpg" alt="Project 4" class="portfolio-img">
-                <div class="portfolio-overlay">
-                    <h3 data-i18n="portfolio.project4.title">Restaurant Website</h3>
-                    <p data-i18n="portfolio.project4.description">Online reservation system with menu management</p>
-                    <a href="https://aw-studio-dev.github.io/showcase/" class="portfolio-link" data-i18n="portfolio.view_project" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            
-            <div class="portfolio-item" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="Project 5" class="portfolio-img">
-                <div class="portfolio-overlay">
-                    <h3 data-i18n="portfolio.project5.title">Portfolio Website</h3>
-                    <p data-i18n="portfolio.project5.description">Creative portfolio for photography studio</p>
-                    <a href="https://aw-studio-dev.github.io/showcase/" class="portfolio-link" data-i18n="portfolio.view_project" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            
-            <div class="portfolio-item" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                <img src="https://i.pinimg.com/736x/3f/25/4f/3f254f9afa9ee7769bdd0d837f603b10.jpg" alt="Project 6" class="portfolio-img">
-                <div class="portfolio-overlay">
-                    <h3 data-i18n="portfolio.project6.title">Blog Platform</h3>
-                    <p data-i18n="portfolio.project6.description">Custom CMS for content creators</p>
-                    <a href="https://aw-studio-dev.github.io/showcase/" class="portfolio-link" data-i18n="portfolio.view_project" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
+                <div class="feature animate delay-4">
+                    <i class="fas fa-headset"></i>
+                    <h3 data-i18n="features.feature4.title">Ongoing Support</h3>
+                    <p data-i18n="features.feature4.desc">We're with you every step of the way, even after launch.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="section" id="about">
-        <div class="about-content">
-            <div class="about-image floating" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Our Team">
-            </div>
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="animate" data-i18n="contact.title">Ready to Elevate Your Online Presence?</h2>
+            <p class="tagline animate delay-1" data-i18n="contact.subtitle">Let's discuss how we can bring your vision to life.</p>
             
-            <div class="about-text">
-                <h2 class="section-title" data-i18n="about.title">About AW Studio</h2>
-                <p data-i18n="about.description1">AW Studio is a team specialized in creating full stack, fast and high-quality websites.</p>
-                <p data-i18n="about.description2">Our team of expert developers, designers, and strategists work collaboratively to create websites that not only look stunning but also perform exceptionally, driving real business results.</p>
-                
-                <div class="stats">
-                    <div class="stat-item" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label" data-i18n="about.stats.projects">Projects Completed</div>
-                    </div>
-                    
-                    <div class="stat-item" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label" data-i18n="about.stats.satisfaction">Client Satisfaction</div>
-                    </div>
-                    
-                    <div class="stat-item" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                        <div class="stat-number">15+</div>
-                        <div class="stat-label" data-i18n="about.stats.team">Team Members</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-        <div class="contact-container">
-            <div class="contact-info">
-                <h2 class="section-title" data-i18n="contact.title">Get In Touch</h2>
-                <p data-i18n="contact.subtitle">Ready to start your project? Have questions about our services? We'd love to hear from you.</p>
-                
-                <div class="contact-details">
-                    <div class="contact-item" onclick="window.open('mailto:aw.studio.dz@gmail.com', '_blank')">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4 data-i18n="contact.email">Email</h4>
-                            <p>aw.studio.dz@gmail.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item" onclick="window.open('https://wa.me/213554152496', '_blank')">
-                        <div class="contact-icon">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4 data-i18n="contact.whatsapp">WhatsApp</h4>
-                            <p>+213 554 15 24 96</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item" onclick="window.open('https://aw-studio-dev.github.io/showcase/', '_blank')">
-                        <div class="contact-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4 data-i18n="contact.portfolio">Portfolio</h4>
-                            <p>aw-studio-dev.github.io/showcase/</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item" onclick="window.open('https://github.com/AW-studio-dev', '_blank')">
-                        <div class="contact-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>GitHub</h4>
-                            <p>github.com/AW-studio-dev</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="contact-form">
-                <form action="https://formspree.io/f/mldjvekr" method="POST" id="contactForm">
+            <div class="contact-form animate delay-2">
+                <form id="contactForm" action="https://formspree.io/f/mldjvekr" method="POST">
                     <div class="form-group">
                         <label for="name" data-i18n="contact.form.name">Your Name</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
+                        <input type="text" id="name" name="name" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="email" data-i18n="contact.form.email">Email Address</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
+                        <input type="email" id="email" name="email" required>
                     </div>
-                    
                     <div class="form-group">
-                        <label for="subject" data-i18n="contact.form.subject">Subject</label>
-                        <input type="text" id="subject" name="subject" class="form-control" required>
+                        <label for="message" data-i18n="contact.form.message">Project Details</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="message" data-i18n="contact.form.message">Message</label>
-                        <textarea id="message" name="message" class="form-control" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn" data-i18n="contact.form.submit">Send Message</button>
+                    <button type="submit" class="btn" data-i18n="contact.form.submit">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-about">
-                <a href="#" class="footer-logo">
-                    <div class="footer-logo-icon">AW</div>
-                    <span>Studio</span>
-                </a>
-                <p data-i18n="footer.description">Premium web development services tailored to your business needs. Let's build something amazing together.</p>
-                
-                <div class="social-links">
-                    <a href="#" class="social-link" onclick="window.open('https://www.facebook.com/profile.php?id=61567468048179', '_blank')"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-link" onclick="window.open('https://www.tiktok.com/@aw.studio.dz', '_blank')"><i class="fab fa-tiktok"></i></a>
-                </div>
+        <div class="container">
+            <img src="https://i.ibb.co/gL7xBN4r/Capture-d-cran-2025-04-14-174007.png" alt="AW Studio Logo" class="logo" style="width: 100px; height: 100px;">
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=61574913947176" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             </div>
-            
-            <div class="footer-links">
-                <h3 data-i18n="footer.links1.title">Quick Links</h3>
-                <ul>
-                    <li><a href="#home" data-i18n="nav.home">Home</a></li>
-                    <li><a href="#services" data-i18n="nav.services">Services</a></li>
-                    <li><a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a></li>
-                    <li><a href="#about" data-i18n="nav.about">About</a></li>
-                    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-links">
-                <h3 data-i18n="footer.links2.title">Services</h3>
-                <ul>
-                    <li><a href="https://aw-studio-dev.github.io/showcase/" data-i18n="services.service1.title" target="_blank">Web Development</a></li>
-                    <li><a href="https://aw-studio-dev.github.io/showcase/" data-i18n="services.service2.title" target="_blank">UI/UX Design</a></li>
-                    <li><a href="https://aw-studio-dev.github.io/showcase/" data-i18n="services.service5.title" target="_blank">E-Commerce</a></li>
-                    <li><a href="https://aw-studio-dev.github.io/showcase/" data-i18n="services.service4.title" target="_blank">SEO Optimization</a></li>
-                    <li><a href="https://aw-studio-dev.github.io/showcase/" data-i18n="services.service6.title" target="_blank">Web Hosting</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-newsletter">
-                <h3 data-i18n="footer.newsletter.title">Newsletter</h3>
-                <p data-i18n="footer.newsletter.subtitle">Subscribe to our newsletter for the latest updates and insights.</p>
-                
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Your Email" class="newsletter-input" required>
-                    <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
-                </form>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; <span id="currentYear"></span> AW Studio. <span data-i18n="footer.rights">All Rights Reserved.</span></p>
+            <p data-i18n="footer.copyright">&copy; 2025 AW Studio. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Interactive Elements -->
-    <div class="mouse-trail" id="mouseTrail"></div>
-    <div class="trail-dot" id="trailDot1"></div>
-    <div class="trail-dot" id="trailDot2"></div>
-    <div class="trail-dot" id="trailDot3"></div>
-    <div class="trail-dot" id="trailDot4"></div>
-    
-    <!-- Code Preview Window -->
-    <div class="code-preview" id="codePreview">
-        <div class="code-header">
-            <span class="code-title">Code Preview</span>
-            <button class="code-close" id="codeClose">&times;</button>
-        </div>
-        <div class="code-content">
-            <pre><code class="language-javascript">
-// Sample JavaScript code with syntax highlighting
-function greet(name) {
-    return `Hello, ${name}!`;
-}
-
-class Developer {
-    constructor(name, skills) {
-        this.name = name;
-        this.skills = skills;
-    }
-    
-    introduce() {
-        console.log(`I'm ${this.name} and I know ${this.skills.join(', ')}`);
-    }
-}
-
-const dev = new Developer('Alex', ['JS', 'React', 'Node']);
-dev.introduce();
-            </code></pre>
-        </div>
-    </div>
-    
-    <!-- AI Chatbot -->
-    <div class="chatbot-container" id="chatbotContainer">
-        <div class="chatbot-icon">
-            <i class="fas fa-robot"></i>
-        </div>
-    </div>
-    
-    <div class="chatbot-window" id="chatbotWindow">
-        <div class="chatbot-header">
-            <span class="chatbot-title">AW Studio Assistant</span>
-            <button class="chatbot-close" id="chatbotClose">&times;</button>
-        </div>
-        <div class="chatbot-messages" id="chatbotMessages">
-            <div class="message bot-message">
-                Hello! I'm your AI assistant. How can I help you today?
-            </div>
-        </div>
-        <div class="chatbot-input-container">
-            <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your message...">
-            <button class="chatbot-send" id="chatbotSend">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-    </div>
-    
-    <!-- Audio Visualizer -->
-    <div class="audio-visualizer" id="audioVisualizer">
-        <div class="audio-icon">
-            <i class="fas fa-music"></i>
-        </div>
-        <div class="visualizer-bars" id="visualizerBars">
-            <div class="bar" id="bar1"></div>
-            <div class="bar" id="bar2"></div>
-            <div class="bar" id="bar3"></div>
-            <div class="bar" id="bar4"></div>
-            <div class="bar" id="bar5"></div>
-        </div>
-    </div>
-    
-    <!-- WASM Demo -->
-    <div class="wasm-demo" id="wasmDemo">
-        <div class="wasm-icon">
-            <i class="fab fa-js"></i>
-        </div>
-    </div>
-    
-    <div class="wasm-window" id="wasmWindow">
-        <div class="wasm-title">WASM Fibonacci Demo</div>
-        <input type="number" class="wasm-input" id="wasmInput" placeholder="Enter a number" min="1" max="50">
-        <button class="submit-btn" id="wasmCalculate">Calculate</button>
-        <div class="wasm-result" id="wasmResult">Result will appear here</div>
-    </div>
-    
-    <!-- Shader Effect Canvas -->
-    <canvas class="shader-effect" id="shaderCanvas"></canvas>
-
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const nav = document.querySelector('nav');
         
-        mobileMenuBtn.addEventListener('click', () => {
-            nav.classList.toggle('active');
-        });
-        
-        // Theme Toggle
-        const themeToggle = document.querySelector('.theme-toggle');
-        const body = document.body;
-        
-        // Set dark mode as default
-        body.classList.add('dark-mode');
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        localStorage.setItem('theme', 'dark');
-        
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            
-            if (body.classList.contains('dark-mode')) {
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                localStorage.setItem('theme', 'dark');
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', {
+                    "particles": {
+                        "number": {
+                            "value": 80,
+                            "density": {
+                                "enable": true,
+                                "value_area": 800
+                            }
+                        },
+                        "color": {
+                            "value": "#ffffff"
+                        },
+                        "shape": {
+                            "type": "circle",
+                            "stroke": {
+                                "width": 0,
+                                "color": "#000000"
+                            },
+                            "polygon": {
+                                "nb_sides": 5
+                            }
+                        },
+                        "opacity": {
+                            "value": 0.5,
+                            "random": false,
+                            "anim": {
+                                "enable": false,
+                                "speed": 1,
+                                "opacity_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "size": {
+                            "value": 3,
+                            "random": true,
+                            "anim": {
+                                "enable": false,
+                                "speed": 40,
+                                "size_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "line_linked": {
+                            "enable": true,
+                            "distance": 150,
+                            "color": "#ffffff",
+                            "opacity": 0.4,
+                            "width": 1
+                        },
+                        "move": {
+                            "enable": true,
+                            "speed": 2,
+                            "direction": "none",
+                            "random": false,
+                            "straight": false,
+                            "out_mode": "out",
+                            "bounce": false,
+                            "attract": {
+                                "enable": false,
+                                "rotateX": 600,
+                                "rotateY": 1200
+                            }
+                        }
+                    },
+                    "interactivity": {
+                        "detect_on": "canvas",
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "grab"
+                            },
+                            "onclick": {
+                                "enable": true,
+                                "mode": "push"
+                            },
+                            "resize": true
+                        },
+                        "modes": {
+                            "grab": {
+                                "distance": 140,
+                                "line_linked": {
+                                    "opacity": 1
+                                }
+                            },
+                            "bubble": {
+                                "distance": 400,
+                                "size": 40,
+                                "duration": 2,
+                                "opacity": 8,
+                                "speed": 3
+                            },
+                            "repulse": {
+                                "distance": 200,
+                                "duration": 0.4
+                            },
+                            "push": {
+                                "particles_nb": 4
+                            },
+                            "remove": {
+                                "particles_nb": 2
+                            }
+                        }
+                    },
+                    "retina_detect": true
+                });
             } else {
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                localStorage.setItem('theme', 'light');
+                console.error('particles.js failed to load');
             }
-        });
-        
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Language Translation System
+           
+            animateOnScroll();
+        });
+
+        
         const translations = {
             en: {
-                language: {
-                    english: "English",
-                    french: "French",
-                    arabic: "Arabic"
-                },
-                nav: {
-                    home: "Home",
-                    services: "Services",
-                    portfolio: "Portfolio",
-                    about: "About",
-                    contact: "Contact"
-                },
-                hero: {
-                    title: "Premium Web Solutions for Modern Businesses",
-                    subtitle: "We craft high-performance websites that drive results and elevate your digital presence to new heights.",
-                    button1: "Get Started",
-                    button2: "View Work"
-                },
-                services: {
-                    title: "Our Services",
-                    learn_more: "Learn more",
-                    service1: {
-                        title: "Custom Development",
-                        description: "Tailored web solutions built from scratch to meet your specific business requirements and goals."
-                    },
-                    service2: {
-                        title: "UI/UX Design",
-                        description: "Beautiful, intuitive interfaces designed to enhance user experience and drive engagement."
-                    },
-                    service3: {
-                        title: "Responsive Design",
-                        description: "Flawless performance across all devices, ensuring your website looks perfect on any screen."
-                    },
-                    service4: {
-                        title: "SEO Optimization",
-                        description: "Technical and content optimization to improve your search rankings and organic traffic."
-                    },
-                    service5: {
-                        title: "E-Commerce",
-                        description: "Powerful online stores with secure payment gateways and intuitive product management."
-                    },
-                    service6: {
-                        title: "Web Hosting",
-                        description: "Reliable, high-speed hosting with 99.9% uptime and expert technical support."
-                    }
-                },
-                portfolio: {
-                    title: "Our Portfolio",
-                    view_project: "View Project",
-                    project1: {
-                        title: "E-Commerce Platform",
-                        description: "Complete online store with custom CMS and payment integration"
-                    },
-                    project2: {
-                        title: "Corporate Website",
-                        description: "Modern corporate site with interactive elements"
-                    },
-                    project3: {
-                        title: "Mobile App Dashboard",
-                        description: "Analytics dashboard for health tracking app"
-                    },
-                    project4: {
-                        title: "Restaurant Website",
-                        description: "Online reservation system with menu management"
-                    },
-                    project5: {
-                        title: "Portfolio Website",
-                        description: "Creative portfolio for photography studio"
-                    },
-                    project6: {
-                        title: "Blog Platform",
-                        description: "Custom CMS for content creators"
-                    }
-                },
-                about: {
-                    title: "About AW Studio",
-                    description1: "AW Studio is a team specialized in creating full stack, fast and high-quality websites.",
-                    description2: "Our team of expert developers, designers, and strategists work collaboratively to create websites that not only look stunning but also perform exceptionally, driving real business results.",
-                    stats: {
-                        projects: "Projects Completed",
-                        satisfaction: "Client Satisfaction",
-                        team: "Team Members"
-                    }
-                },
-                contact: {
-                    title: "Get In Touch",
-                    subtitle: "Ready to start your project? Have questions about our services? We'd love to hear from you.",
-                    email: "Email",
-                    whatsapp: "WhatsApp",
-                    portfolio: "Portfolio",
-                    form: {
-                        name: "Your Name",
-                        email: "Email Address",
-                        subject: "Subject",
-                        message: "Message",
-                        submit: "Send Message"
-                    }
-                },
-                footer: {
-                    description: "Premium web development services tailored to your business needs. Let's build something amazing together.",
-                    links1: {
-                        title: "Quick Links"
-                    },
-                    links2: {
-                        title: "Services"
-                    },
-                    newsletter: {
-                        title: "Newsletter",
-                        subtitle: "Subscribe to our newsletter for the latest updates and insights."
-                    },
-                    rights: "All Rights Reserved."
-                }
+                "header.title": "Crafting Digital Excellence",
+                "header.tagline": "We build bespoke websites that captivate and convert, tailored precisely to your vision",
+                "header.viewWork": "View Our Work",
+                "header.getInTouch": "Get in Touch",
+                "projects.title": "Project Showcase",
+                "projects.disclaimerTitle": "Important Note",
+                "projects.disclaimerText": "These are sample projects demonstrating our capabilities. Due to client confidentiality agreements, we cannot display actual client work here. Rest assured, every website we create is custom-tailored to each client's specific needs and brand identity.",
+                "projects.project1.title": "Interactive Resume",
+                "projects.project1.desc": "A playful, interactive resume featuring a cat and black hole game.",
+                "projects.project2.title": "Matcha's Favorite Flower",
+                "projects.project2.desc": "A fun game where users guess Matcha's favorite flower.",
+                "projects.project3.title": "Memory Card Game",
+                "projects.project3.desc": "Test your memory by matching pairs of cards.",
+                "projects.project4.title": "Café Website",
+                "projects.project4.desc": "A professional website for a café.",
+                "projects.project5.title": "German learning Website",
+                "projects.project5.desc": "Learn 10K german words in 10 days!",
+                "projects.project6.title": "Color Guessing Game",
+                "projects.project6.desc": "Guess the correct color based on RGB values.",
+                "projects.project7.title": "Restaurant Website",
+                "projects.project7.desc": "A professional website for a restaurant",
+                "projects.project8.title": "Banks Website",
+                "projects.project8.desc": "Find your perfect bank.",
+                "projects.project9.title": "AW.studio Website",
+                "projects.project9.desc": "Our company website.",
+                "projects.playGame": "Play Game",
+                "projects.visitWebsite": "Visit Website",
+                "projects.startLearning": "Start learning",
+                "features.title": "Why Choose AW Studio?",
+                "features.feature1.title": "Bespoke Designs",
+                "features.feature1.desc": "Every pixel crafted to reflect your unique brand identity and vision.",
+                "features.feature2.title": "Fully Responsive",
+                "features.feature2.desc": "Flawless experience across all devices, from desktop to mobile.",
+                "features.feature3.title": "Blazing Fast",
+                "features.feature3.desc": "Optimized performance that keeps visitors engaged and improves SEO.",
+                "features.feature4.title": "Ongoing Support",
+                "features.feature4.desc": "We're with you every step of the way, even after launch.",
+                "contact.title": "Ready to Elevate Your Online Presence?",
+                "contact.subtitle": "Let's discuss how we can bring your vision to life.",
+                "contact.form.name": "Your Name",
+                "contact.form.email": "Email Address",
+                "contact.form.message": "Project Details",
+                "contact.form.submit": "Send Message",
+                "footer.copyright": "© 2025 AW Studio. All rights reserved."
             },
             fr: {
-                language: {
-                    english: "Anglais",
-                    french: "Français",
-                    arabic: "Arabe"
-                },
-                nav: {
-                    home: "Accueil",
-                    services: "Services",
-                    portfolio: "Portfolio",
-                    about: "À propos",
-                    contact: "Contact"
-                },
-                hero: {
-                    title: "Solutions Web Premium pour les Entreprises Modernes",
-                    subtitle: "Nous créons des sites web hautes performances qui génèrent des résultats et élèvent votre présence numérique à de nouveaux sommets.",
-                    button1: "Commencer",
-                    button2: "Voir nos réalisations"
-                },
-                services: {
-                    title: "Nos Services",
-                    learn_more: "En savoir plus",
-                    service1: {
-                        title: "Développement Sur Mesure",
-                        description: "Solutions web personnalisées conçues pour répondre à vos besoins commerciaux spécifiques."
-                    },
-                    service2: {
-                        title: "Design UI/UX",
-                        description: "Interfaces belles et intuitives conçues pour améliorer l'expérience utilisateur."
-                    },
-                    service3: {
-                        title: "Design Responsive",
-                        description: "Performance parfaite sur tous les appareils, garantissant que votre site est impeccable sur n'importe quel écran."
-                    },
-                    service4: {
-                        title: "Optimisation SEO",
-                        description: "Optimisation technique et de contenu pour améliorer votre classement dans les moteurs de recherche."
-                    },
-                    service5: {
-                        title: "Commerce Électronique",
-                        description: "Boutiques en ligne puissantes avec des passerelles de paiement sécurisées."
-                    },
-                    service6: {
-                        title: "Hébergement Web",
-                        description: "Hébergement fiable et rapide avec 99,9% de disponibilité et support technique expert."
-                    }
-                },
-                portfolio: {
-                    title: "Notre Portfolio",
-                    view_project: "Voir le projet",
-                    project1: {
-                        title: "Plateforme E-Commerce",
-                        description: "Boutique en ligne complète avec CMS personnalisé et intégration de paiement"
-                    },
-                    project2: {
-                        title: "Site Web Corporatif",
-                        description: "Site corporatif moderne avec éléments interactifs"
-                    },
-                    project3: {
-                        title: "Tableau de Bord Mobile",
-                        description: "Tableau de bord d'analyse pour application de suivi santé"
-                    },
-                    project4: {
-                        title: "Site Web de Restaurant",
-                        description: "Système de réservation en ligne avec gestion de menu"
-                    },
-                    project5: {
-                        title: "Site Web Portfolio",
-                        description: "Portfolio créatif pour studio de photographie"
-                    },
-                    project6: {
-                        title: "Plateforme de Blog",
-                        description: "CMS personnalisé pour créateurs de contenu"
-                    }
-                },
-                about: {
-                    title: "À propos de AW Studio",
-                    description1: "AW Studio est une équipe spécialisée dans la création de sites web full stack, rapides et de haute qualité.",
-                    description2: "Notre équipe de développeurs, designers et stratèges travaille en collaboration pour créer des sites web qui non seulement sont magnifiques mais qui fonctionnent exceptionnellement bien, générant des résultats commerciaux concrets.",
-                    stats: {
-                        projects: "Projets Complétés",
-                        satisfaction: "Satisfaction Client",
-                        team: "Membres d'Équipe"
-                    }
-                },
-                contact: {
-                    title: "Contactez-Nous",
-                    subtitle: "Prêt à commencer votre projet? Des questions sur nos services? Nous serions ravis d'avoir de vos nouvelles.",
-                    email: "Email",
-                    whatsapp: "WhatsApp",
-                    portfolio: "Portfolio",
-                    form: {
-                        name: "Votre Nom",
-                        email: "Adresse Email",
-                        subject: "Sujet",
-                        message: "Message",
-                        submit: "Envoyer"
-                    }
-                },
-                footer: {
-                    description: "Services de développement web premium adaptés à vos besoins commerciaux. Construisons quelque chose d'extraordinaire ensemble.",
-                    links1: {
-                        title: "Liens Rapides"
-                    },
-                    links2: {
-                        title: "Services"
-                    },
-                    newsletter: {
-                        title: "Newsletter",
-                        subtitle: "Abonnez-vous à notre newsletter pour les dernières mises à jour et insights."
-                    },
-                    rights: "Tous Droits Réservés."
-                }
+                "header.title": "Création d'Excellence Numérique",
+                "header.tagline": "Nous créons des sites web sur mesure qui captivent et convertissent, parfaitement adaptés à votre vision",
+                "header.viewWork": "Voir Nos Réalisations",
+                "header.getInTouch": "Contactez-Nous",
+                "projects.title": "Galerie de Projets",
+                "projects.disclaimerTitle": "Note Importante",
+                "projects.disclaimerText": "Ces projets sont des exemples démontrant nos capacités. En raison des accords de confidentialité avec nos clients, nous ne pouvons pas afficher ici nos réalisations pour eux. Soyez assuré que chaque site web que nous créons est entièrement personnalisé selon les besoins spécifiques et l'identité de marque de chaque client.",
+                "projects.project1.title": "CV Interactif",
+                "projects.project1.desc": "Un CV ludique et interactif avec un jeu de chat et trou noir.",
+                "projects.project2.title": "Fleur Préférée de Matcha",
+                "projects.project2.desc": "Un jeu amusant où les utilisateurs devinent la fleur préférée de Matcha.",
+                "projects.project3.title": "Jeu de Mémoire",
+                "projects.project3.desc": "Testez votre mémoire en associant des paires de cartes.",
+                "projects.project4.title": "Site Web de Café",
+                "projects.project4.desc": "Un site web professionnel pour un café.",
+                "projects.project5.title": "Site d'Apprentissage d'Allemand",
+                "projects.project5.desc": "Apprenez 10K mots allemands en 10 jours !",
+                "projects.project6.title": "Jeu de Devinette de Couleurs",
+                "projects.project6.desc": "Devinez la bonne couleur basée sur les valeurs RGB.",
+                "projects.project7.title": "Site Web de Restaurant",
+                "projects.project7.desc": "Un site web professionnel pour un restaurant",
+                "projects.project8.title": "Site Web de Banques",
+                "projects.project8.desc": "Trouvez la banque parfaite.",
+                "projects.project9.title": "Site Web AW.studio",
+                "projects.project9.desc": "Le site web de notre entreprise.",
+                "projects.playGame": "Jouer",
+                "projects.visitWebsite": "Visiter le Site",
+                "projects.startLearning": "Commencer à Apprendre",
+                "features.title": "Pourquoi Choisir AW Studio?",
+                "features.feature1.title": "Designs Sur Mesure",
+                "features.feature1.desc": "Chaque pixel est conçu pour refléter votre identité de marque unique et votre vision.",
+                "features.feature2.title": "Totalement Responsive",
+                "features.feature2.desc": "Expérience impeccable sur tous les appareils, du desktop au mobile.",
+                "features.feature3.title": "Ultra Rapide",
+                "features.feature3.desc": "Performance optimisée qui maintient l'engagement des visiteurs et améliore le SEO.",
+                "features.feature4.title": "Support Continu",
+                "features.feature4.desc": "Nous vous accompagnons à chaque étape, même après le lancement.",
+                "contact.title": "Prêt à Élever Votre Présence en Ligne?",
+                "contact.subtitle": "Discutons de la manière dont nous pouvons concrétiser votre vision.",
+                "contact.form.name": "Votre Nom",
+                "contact.form.email": "Adresse Email",
+                "contact.form.message": "Détails du Projet",
+                "contact.form.submit": "Envoyer le Message",
+                "footer.copyright": "© 2025 AW Studio. Tous droits réservés."
             },
             ar: {
-                language: {
-                    english: "الإنجليزية",
-                    french: "الفرنسية",
-                    arabic: "العربية"
-                },
-                nav: {
-                    home: "الرئيسية",
-                    services: "الخدمات",
-                    portfolio: "الأعمال",
-                    about: "من نحن",
-                    contact: "اتصل بنا"
-                },
-                hero: {
-                    title: "حلول ويب متميزة للشركات الحديثة",
-                    subtitle: "نحن نصنع مواقع ويب عالية الأداء تحقق النتائج وترفع من وجودك الرقمي إلى آفاق جديدة.",
-                    button1: "ابدأ الآن",
-                    button2: "عرض الأعمال"
-                },
-                services: {
-                    title: "خدماتنا",
-                    learn_more: "المزيد",
-                    service1: {
-                        title: "تطوير مخصص",
-                        description: "حلول ويب مصممة خصيصًا لتلبية متطلبات وأهداف عملك المحددة."
-                    },
-                    service2: {
-                        title: "تصميم واجهة المستخدم",
-                        description: "واجهات جمية وبديهية مصممة لتعزيز تجربة المستخدم وزيادة التفاعل."
-                    },
-                    service3: {
-                        title: "تصميم متجاوب",
-                        description: "أداء لا تشوبه شائبة عبر جميع الأجهزة، مما يضمن أن موقعك يبدو مثاليًا على أي شاشة."
-                    },
-                    service4: {
-                        title: "تحسين محركات البحث",
-                        description: "تحسين فني للمحتوى لتحسين ترتيبك في نتائج البحث وزيادة الزيارات العضوية."
-                    },
-                    service5: {
-                        title: "التجارة الإلكترونية",
-                        description: "متاجر إلكترونية قوية مع بوابات دفع آمنة وإدارة منتجات سهلة."
-                    },
-                    service6: {
-                        title: "استضافة الويب",
-                        description: "استضافة موثوقة وسريعة مع وقت تشغيل 99.9٪ ودعم فني من الخبراء."
-                    }
-                },
-                portfolio: {
-                    title: "أعمالنا",
-                    view_project: "عرض المشروع",
-                    project1: {
-                        title: "منصة تجارة إلكترونية",
-                        description: "متجر إلكتروني كامل مع نظام إدارة محتوى مخصص وتكامل دفع"
-                    },
-                    project2: {
-                        title: "موقع شركة",
-                        description: "موقع شركة حديث مع عناصر تفاعلية"
-                    },
-                    project3: {
-                        title: "لوحة تحكم تطبيق جوال",
-                        description: "لوحة تحكم تحليلية لتطبيق تتبع الصحة"
-                    },
-                    project4: {
-                        title: "موقع مطعم",
-                        description: "نظام حجز عبر الإنترنت مع إدارة القوائم"
-                    },
-                    project5: {
-                        title: "موقع ملف شخصي",
-                        description: "ملف شخصي إبداعي لاستوديو تصوير"
-                    },
-                    project6: {
-                        title: "منصة مدونة",
-                        description: "نظام إدارة محتوى مخصص لصانعي المحتوى"
-                    }
-                },
-                about: {
-                    title: "عن AW Studio",
-                    description1: "AW Studio هي فريق متخصص في إنشاء مواقع ويب كاملة، سريعة وعالية الجودة.",
-                    description2: "يعمل فريقنا من المطورين والمصممين والخبراء الاستراتيجيين بشكل تعاوني لإنشاء مواقع ويب لا تبدو رائعة فحسب، بل تعمل أيضًا بشكل استثنائي، مما يحقق نتائج تجارية حقيقية.",
-                    stats: {
-                        projects: "المشاريع المكتملة",
-                        satisfaction: "رضا العملاء",
-                        team: "أعضاء الفريق"
-                    }
-                },
-                contact: {
-                    title: "تواصل معنا",
-                    subtitle: "هل أنت مستعد لبدء مشروعك؟ لديك أسئلة حول خدماتنا؟ نحن نحب أن نسمع منك.",
-                    email: "البريد الإلكتروني",
-                    whatsapp: "واتساب",
-                    portfolio: "الأعمال",
-                    form: {
-                        name: "اسمك",
-                        email: "البريد الإلكتروني",
-                        subject: "الموضوع",
-                        message: "الرسالة",
-                        submit: "إرسال"
-                    }
-                },
-                footer: {
-                    description: "خدمات تطوير الويب المتميزة المصممة خصيصًا لاحتياجات عملك. دعونا نبني شيئًا مذهلاً معًا.",
-                    links1: {
-                        title: "روابط سريعة"
-                    },
-                    links2: {
-                        title: "الخدمات"
-                    },
-                    newsletter: {
-                        title: "النشرة الإخبارية",
-                        subtitle: "اشترك في نشرتنا الإخبارية للحصول على آخر التحديثات والرؤى."
-                    },
-                    rights: "جميع الحقوق محفوظة."
-                }
+                "header.title": "صناعة التميز الرقمي",
+                "header.tagline": "نحن نبني مواقع ويب مخصصة تجذب وتحول ، مصممة بدقة وفقًا لرؤيتك",
+                "header.viewWork": "عرض أعمالنا",
+                "header.getInTouch": "تواصل معنا",
+                "projects.title": "عرض المشاريع",
+                "projects.disclaimerTitle": "ملاحظة مهمة",
+                "projects.disclaimerText": "هذه مشاريع نموذجية توضح قدراتنا. بسبب اتفاقيات السرية مع العملاء ، لا يمكننا عرض أعمالنا الفعلية للعملاء هنا. كن مطمئنًا أن كل موقع ويب ننشئه مصمم خصيصًا وفقًا للاحتياجات المحددة وهوية العلامة التجارية لكل عميل.",
+                "projects.project1.title": "سيرة ذاتية تفاعلية",
+                "projects.project1.desc": "سيرة ذاتية لعوب وتفاعلية تتميز بلعبة قط وثقب أسود.",
+                "projects.project2.title": "الزهرة المفضلة لماتشا",
+                "projects.project2.desc": "لعبة ممتعة حيث يحاول المستخدمون تخمين الزهرة المفضلة لماتشا.",
+                "projects.project3.title": "لعبة بطاقات الذاكرة",
+                "projects.project3.desc": "اختبر ذاكرتك بمطابقة أزواج من البطاقات.",
+                "projects.project4.title": "موقع مقهى",
+                "projects.project4.desc": "موقع احترافي لمقهى.",
+                "projects.project5.title": "موقع تعلم الألمانية",
+                "projects.project5.desc": "تعلم 10 آلاف كلمة ألمانية في 10 أيام!",
+                "projects.project6.title": "لعبة تخمين الألوان",
+                "projects.project6.desc": "خمن اللون الصحيح بناءً على قيم RGB.",
+                "projects.project7.title": "موقع مطعم",
+                "projects.project7.desc": "موقع احترافي لمطعم",
+                "projects.project8.title": "موقع بنوك",
+                "projects.project8.desc": "ابحث عن البنك المثالي لك.",
+                "projects.project9.title": "موقع AW.studio",
+                "projects.project9.desc": "موقع شركتنا.",
+                "projects.playGame": "العب اللعبة",
+                "projects.visitWebsite": "زيارة الموقع",
+                "projects.startLearning": "ابدأ التعلم",
+                "features.title": "لماذا تختار AW Studio؟",
+                "features.feature1.title": "تصاميم مخصصة",
+                "features.feature1.desc": "كل بكسل مصمم ليعكس هوية علامتك التجارية الفريدة ورؤيتك.",
+                "features.feature2.title": "متجاوب بالكامل",
+                "features.feature2.desc": "تجربة لا تشوبها شائبة عبر جميع الأجهزة ، من سطح المكتب إلى الهاتف المحمول.",
+                "features.feature3.title": "سريع للغاية",
+                "features.feature3.desc": "أداء محسن يحافظ على تفاعل الزوار ويحسن SEO.",
+                "features.feature4.title": "دعم مستمر",
+                "features.feature4.desc": "نحن معك في كل خطوة ، حتى بعد الإطلاق.",
+                "contact.title": "هل أنت مستعد لرفع مستوى وجودك على الإنترنت؟",
+                "contact.subtitle": "دعونا نناقش كيف يمكننا تحقيق رؤيتك.",
+                "contact.form.name": "اسمك",
+                "contact.form.email": "عنوان البريد الإلكتروني",
+                "contact.form.message": "تفاصيل المشروع",
+                "contact.form.submit": "إرسال الرسالة",
+                "footer.copyright": "© 2025 AW Studio. جميع الحقوق محفوظة."
             }
         };
 
-        // Language switching functionality
-        const languageBtn = document.getElementById('languageBtn');
-        const languageElements = document.querySelectorAll('[data-i18n]');
-        const languageLinks = document.querySelectorAll('.language-dropdown a');
-
-        // Set initial language from localStorage or default to English
-        let currentLang = localStorage.getItem('language') || 'en';
-        updateLanguage(currentLang);
-
-        // Handle language selection
-        languageLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const lang = link.getAttribute('data-lang');
-                currentLang = lang;
-                localStorage.setItem('language', lang);
-                updateLanguage(lang);
+        document.querySelectorAll('.lang-btn').forEach(button => {
+            button.addEventListener('click', function() {
                 
-                // Update language button text
-                const langText = translations[lang].language[lang];
-                languageBtn.querySelector('span').textContent = langText;
-            });
-        });
-
-        // Update all elements with the selected language
-        function updateLanguage(lang) {
-            languageElements.forEach(element => {
-                const keys = element.getAttribute('data-i18n').split('.');
-                let translation = translations[lang];
-                
-                keys.forEach(key => {
-                    translation = translation[key];
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.remove('active');
                 });
                 
-                if (translation) {
-                    element.textContent = translation;
-                    
-                    // Update placeholders for input fields
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.setAttribute('placeholder', translation);
+               
+                this.classList.add('active');
+                
+                
+                const lang = this.getAttribute('data-lang');
+                
+                
+                if (lang === 'ar') {
+                    document.documentElement.dir = 'rtl';
+                } else {
+                    document.documentElement.dir = 'ltr';
+                }
+                
+               
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (translations[lang] && translations[lang][key]) {
+                        element.textContent = translations[lang][key];
                     }
-                }
-            });
-            
-            // Update RTL for Arabic
-            const heroImage = document.querySelector('.hero-image');
-            if (lang === 'ar') {
-                document.documentElement.dir = 'rtl';
-                document.body.style.textAlign = 'right';
-                heroImage.style.right = 'auto';
-                heroImage.style.left = '5%';
-            } else {
-                document.documentElement.dir = 'ltr';
-                document.body.style.textAlign = 'left';
-                heroImage.style.left = 'auto';
-                heroImage.style.right = '5%';
-            }
-        }
-
-        // 3D Particle Background
-        VANTA.NET({
-            el: "#particles-js",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0x7b2cbf,
-            backgroundColor: 0xf3e9ff,
-            points: 12.00,
-            maxDistance: 22.00,
-            spacing: 18.00
-        });
-
-        // Mouse Trail Effect
-        const mouseTrail = document.getElementById('mouseTrail');
-        const trailDots = [
-            document.getElementById('trailDot1'),
-            document.getElementById('trailDot2'),
-            document.getElementById('trailDot3'),
-            document.getElementById('trailDot4')
-        ];
-
-        let mouseX = 0, mouseY = 0;
-        let posX = 0, posY = 0;
-        const delay = 0.05; // Adjust for smoother/faster trail
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function updateTrail() {
-            // Main trail dot
-            posX += (mouseX - posX) * delay;
-            posY += (mouseY - posY) * delay;
-            
-            mouseTrail.style.left = posX + 'px';
-            mouseTrail.style.top = posY + 'px';
-            
-            // Additional trail dots with more delay
-            trailDots.forEach((dot, index) => {
-                const dotDelay = delay * (index + 2);
-                let dotX = parseFloat(dot.style.left || posX);
-                let dotY = parseFloat(dot.style.top || posY);
-                
-                dotX += (posX - dotX) * dotDelay;
-                dotY += (posY - dotY) * dotDelay;
-                
-                dot.style.left = dotX + 'px';
-                dot.style.top = dotY + 'px';
-                dot.style.opacity = 1 - (index * 0.2);
-                dot.style.width = (20 - (index * 3)) + 'px';
-                dot.style.height = (20 - (index * 3)) + 'px';
-            });
-            
-            requestAnimationFrame(updateTrail);
-        }
-
-        updateTrail();
-
-        // Code Preview Window
-        const codePreview = document.getElementById('codePreview');
-        const codeClose = document.getElementById('codeClose');
-
-        // Show code preview after 5 seconds
-        setTimeout(() => {
-            codePreview.classList.add('active');
-        }, 5000);
-
-        codeClose.addEventListener('click', () => {
-            codePreview.classList.remove('active');
-        });
-
-        // AI Chatbot
-        const chatbotContainer = document.getElementById('chatbotContainer');
-        const chatbotWindow = document.getElementById('chatbotWindow');
-        const chatbotClose = document.getElementById('chatbotClose');
-        const chatbotMessages = document.getElementById('chatbotMessages');
-        const chatbotInput = document.getElementById('chatbotInput');
-        const chatbotSend = document.getElementById('chatbotSend');
-
-        chatbotContainer.addEventListener('click', () => {
-            chatbotWindow.classList.toggle('active');
-        });
-
-        chatbotClose.addEventListener('click', () => {
-            chatbotWindow.classList.remove('active');
-        });
-
-        function addBotMessage(text) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'message bot-message';
-            messageDiv.textContent = text;
-            chatbotMessages.appendChild(messageDiv);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }
-
-        function addUserMessage(text) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'message user-message';
-            messageDiv.textContent = text;
-            chatbotMessages.appendChild(messageDiv);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }
-
-        chatbotSend.addEventListener('click', sendMessage);
-        chatbotInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
-
-        function sendMessage() {
-            const message = chatbotInput.value.trim();
-            if (message) {
-                addUserMessage(message);
-                chatbotInput.value = '';
-                
-                // Simulate AI response (in a real app, this would call an API)
-                setTimeout(() => {
-                    const responses = [
-                        "I'm an AI assistant here to help you with AW Studio services.",
-                        "We specialize in web development, design, and digital solutions.",
-                        "You can learn more about our services by visiting our website.",
-                        "Would you like me to connect you with a human representative?",
-                        "Our team is available 24/7 to answer your questions."
-                    ];
-                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                    addBotMessage(randomResponse);
-                }, 1000);
-            }
-        }
-
-        // Audio Visualizer
-        const audioVisualizer = document.getElementById('audioVisualizer');
-        const visualizerBars = document.getElementById('visualizerBars');
-        const bars = Array.from(document.querySelectorAll('.bar'));
-        let audioContext, analyser, dataArray;
-        let isPlaying = false;
-
-        audioVisualizer.addEventListener('click', toggleAudio);
-
-        function toggleAudio() {
-            if (!isPlaying) {
-                initAudio();
-                isPlaying = true;
-                visualizerBars.classList.add('active');
-            } else {
-                if (audioContext) {
-                    audioContext.close();
-                    isPlaying = false;
-                    visualizerBars.classList.remove('active');
-                    bars.forEach(bar => bar.style.animation = 'none');
-                }
-            }
-        }
-
-        function initAudio() {
-            audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            analyser = audioContext.createAnalyser();
-            analyser.fftSize = 32;
-            
-            const bufferLength = analyser.frequencyBinCount;
-            dataArray = new Uint8Array(bufferLength);
-            
-            // Create oscillator for demo (in a real app, you'd connect to actual audio)
-            const oscillator = audioContext.createOscillator();
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
-            
-            const gainNode = audioContext.createGain();
-            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(analyser);
-            analyser.connect(audioContext.destination);
-            
-            oscillator.start();
-            
-            visualize();
-        }
-
-        function visualize() {
-            if (!isPlaying) return;
-            
-            analyser.getByteFrequencyData(dataArray);
-            
-            for (let i = 0; i < bars.length; i++) {
-                const value = dataArray[i] / 255;
-                const height = value * 100;
-                bars[i].style.height = `${10 + height}px`;
-                bars[i].style.animation = `bar-animation ${0.5 + Math.random() * 0.5}s infinite alternate`;
-                bars[i].style.animationDelay = `${i * 0.1}s`;
-            }
-            
-            requestAnimationFrame(visualize);
-        }
-
-        // WASM Demo
-        const wasmDemo = document.getElementById('wasmDemo');
-        const wasmWindow = document.getElementById('wasmWindow');
-        const wasmInput = document.getElementById('wasmInput');
-        const wasmCalculate = document.getElementById('wasmCalculate');
-        const wasmResult = document.getElementById('wasmResult');
-
-        wasmDemo.addEventListener('click', () => {
-            wasmWindow.classList.toggle('active');
-        });
-
-        // Simulate WASM functionality with JavaScript
-        wasmCalculate.addEventListener('click', () => {
-            const num = parseInt(wasmInput.value);
-            if (num && num > 0 && num <= 50) {
-                const result = fibonacci(num);
-                wasmResult.textContent = `Fibonacci(${num}) = ${result}`;
-            } else {
-                wasmResult.textContent = 'Please enter a number between 1 and 50';
-            }
-        });
-
-        function fibonacci(n) {
-            let a = 0, b = 1, temp;
-            for (let i = 0; i < n; i++) {
-                temp = a;
-                a = b;
-                b = temp + b;
-            }
-            return a;
-        }
-
-        // WebGL Shader Effect
-        const shaderCanvas = document.getElementById('shaderCanvas');
-        shaderCanvas.width = window.innerWidth;
-        shaderCanvas.height = window.innerHeight;
-        
-        const gl = shaderCanvas.getContext('webgl');
-        if (!gl) {
-            console.error('WebGL not supported');
-        } else {
-            // Vertex shader
-            const vsSource = `
-                attribute vec2 position;
-                void main() {
-                    gl_Position = vec4(position, 0.0, 1.0);
-                }
-            `;
-            
-            // Fragment shader with glitch effect
-            const fsSource = `
-                precision highp float;
-                uniform float time;
-                uniform vec2 resolution;
-                
-                void main() {
-                    vec2 uv = gl_FragCoord.xy / resolution.xy;
-                    
-                    // Create glitch effect
-                    float glitch = sin(time * 10.0) * 0.01;
-                    uv.x += glitch;
-                    
-                    // Create color distortion
-                    vec3 color;
-                    color.r = abs(sin(time * 0.5 + uv.x * 10.0));
-                    color.g = abs(sin(time * 0.7 + uv.y * 10.0));
-                    color.b = abs(sin(time * 0.9 + (uv.x + uv.y) * 5.0));
-                    
-                    // Add noise
-                    float noise = fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453);
-                    noise = fract(noise * time);
-                    color += noise * 0.1;
-                    
-                    gl_FragColor = vec4(color, 0.1);
-                }
-            `;
-            
-            // Compile shaders
-            const vertexShader = gl.createShader(gl.VERTEX_SHADER);
-            gl.shaderSource(vertexShader, vsSource);
-            gl.compileShader(vertexShader);
-            
-            const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
-            gl.shaderSource(fragmentShader, fsSource);
-            gl.compileShader(fragmentShader);
-            
-            // Create shader program
-            const shaderProgram = gl.createProgram();
-            gl.attachShader(shaderProgram, vertexShader);
-            gl.attachShader(shaderProgram, fragmentShader);
-            gl.linkProgram(shaderProgram);
-            gl.useProgram(shaderProgram);
-            
-            // Set up geometry
-            const positionBuffer = gl.createBuffer();
-            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-            const positions = [
-                -1.0, -1.0,
-                 1.0, -1.0,
-                -1.0,  1.0,
-                 1.0,  1.0,
-            ];
-            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
-            
-            const positionAttributeLocation = gl.getAttribLocation(shaderProgram, "position");
-            gl.enableVertexAttribArray(positionAttributeLocation);
-            gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
-            
-            // Get uniform locations
-            const timeUniformLocation = gl.getUniformLocation(shaderProgram, "time");
-            const resolutionUniformLocation = gl.getUniformLocation(shaderProgram, "resolution");
-            
-            // Set resolution
-            gl.uniform2f(resolutionUniformLocation, shaderCanvas.width, shaderCanvas.height);
-            
-            // Animation loop
-            let startTime = Date.now();
-            function animate() {
-                const currentTime = Date.now();
-                const elapsedTime = (currentTime - startTime) / 1000;
-                
-                gl.uniform1f(timeUniformLocation, elapsedTime);
-                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-                
-                requestAnimationFrame(animate);
-            }
-            
-            animate();
-            
-            // Handle resize
-            window.addEventListener('resize', () => {
-                shaderCanvas.width = window.innerWidth;
-                shaderCanvas.height = window.innerHeight;
-                gl.viewport(0, 0, shaderCanvas.width, shaderCanvas.height);
-                gl.uniform2f(resolutionUniformLocation, shaderCanvas.width, shaderCanvas.height);
-            });
-        }
-
-        // GSAP Animations
-        document.addEventListener('DOMContentLoaded', () => {
-            gsap.registerPlugin(ScrollTrigger);
-            
-            // Animate hero elements
-            gsap.from('.hero h1', {
-                duration: 1,
-                opacity: 0,
-                y: 30,
-                ease: 'power3.out'
-            });
-            
-            gsap.from('.hero p', {
-                duration: 1,
-                opacity: 0,
-                y: 30,
-                delay: 0.3,
-                ease: 'power3.out'
-            });
-            
-            gsap.from('.btn', {
-                duration: 1,
-                opacity: 0,
-                y: 30,
-                delay: 0.6,
-                ease: 'power3.out',
-                stagger: 0.1
-            });
-            
-            gsap.from('.hero-image', {
-                duration: 1.5,
-                opacity: 0,
-                x: 100,
-                delay: 0.3,
-                ease: 'power3.out'
-            });
-            
-            // Animate section titles
-            gsap.utils.toArray('.section-title').forEach(title => {
-                gsap.from(title, {
-                    scrollTrigger: {
-                        trigger: title,
-                        start: 'top 80%'
-                    },
-                    duration: 0.8,
-                    opacity: 0,
-                    y: 50,
-                    ease: 'power3.out'
                 });
             });
-            
-            // Animate service cards
-            gsap.utils.toArray('.service-card').forEach((card, i) => {
-                gsap.from(card, {
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 80%'
-                    },
-                    duration: 0.8,
-                    opacity: 0,
-                    y: 50,
-                    delay: i * 0.1,
-                    ease: 'power3.out'
-                });
-            });
-            
-            // Animate portfolio items
-            gsap.utils.toArray('.portfolio-item').forEach((item, i) => {
-                gsap.from(item, {
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top 80%'
-                    },
-                    duration: 0.8,
-                    opacity: 0,
-                    y: 50,
-                    delay: i * 0.1,
-                    ease: 'power3.out'
-                });
-            });
-            
-            // Animate about section
-            gsap.from('.about-image', {
-                scrollTrigger: {
-                    trigger: '.about-content',
-                    start: 'top 80%'
-                },
-                duration: 1,
-                opacity: 0,
-                x: -50,
-                ease: 'power3.out'
-            });
-            
-            gsap.from('.about-text', {
-                scrollTrigger: {
-                    trigger: '.about-content',
-                    start: 'top 80%'
-                },
-                duration: 1,
-                opacity: 0,
-                x: 50,
-                ease: 'power3.out'
-            });
-            
-            // Animate contact section
-            gsap.from('.contact-info', {
-                scrollTrigger: {
-                    trigger: '.contact-container',
-                    start: 'top 80%'
-                },
-                duration: 1,
-                opacity: 0,
-                x: -50,
-                ease: 'power3.out'
-            });
-            
-            gsap.from('.contact-form', {
-                scrollTrigger: {
-                    trigger: '.contact-container',
-                    start: 'top 80%'
-                },
-                duration: 1,
-                opacity: 0,
-                x: 50,
-                ease: 'power3.out'
-            });
         });
-        
-        // Smooth Scrolling for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    nav.classList.remove('active');
-                }
-            });
-        });
-        
-        // Header Scroll Effect
-        const header = document.querySelector('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.style.padding = '1rem 5%';
-                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-            } else {
-                header.style.padding = '1.5rem 5%';
-                header.style.boxShadow = 'none';
-            }
-        });
-        
+
         // Form submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const form = this;
-            const formData = new FormData(form);
-            
             fetch(form.action, {
                 method: 'POST',
-                body: formData,
+                body: new FormData(form),
                 headers: {
                     'Accept': 'application/json'
                 }
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert(currentLang === 'en' ? 'Thank you for your message! We will get back to you soon.' : 
-                          currentLang === 'fr' ? 'Merci pour votre message! Nous vous contacterons bientôt.' :
-                          'شكرًا لك على رسالتك! سوف نعود إليك قريبًا.');
-                    form.reset();
+            }).then(response => {
+                const activeLang = document.querySelector('.lang-btn.active').getAttribute('data-lang');
+                if (activeLang === 'ar') {
+                    alert('شكرًا لتواصلك معنا! سنعود إليك قريبًا.');
+                } else if (activeLang === 'fr') {
+                    alert('Merci de nous avoir contactés! Nous vous répondrons bientôt.');
                 } else {
-                    throw new Error('Network response was not ok');
+                    alert('Thank you for reaching out! We\'ll get back to you soon.');
                 }
-            })
-            .catch(error => {
-                alert(currentLang === 'en' ? 'There was a problem sending your message. Please try again.' : 
-                      currentLang === 'fr' ? 'Un problème est survenu lors de l\'envoi de votre message. Veuillez réessayer.' :
-                      'حدثت مشكلة أثناء إرسال رسالتك. يرجى المحاولة مرة أخرى.');
+                form.reset();
+            }).catch(error => {
+                alert('Error: Please try again later');
             });
         });
+
+        // Scroll animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
     </script>
 </body>
 </html>
